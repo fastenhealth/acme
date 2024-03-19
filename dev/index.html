@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AngularWebComponent</title>
+  <title>Acme Care Example - Fasten Connect</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -296,11 +296,15 @@
             <input type="text" id="input_30" name="q30_primaryCare" data-type="input-textbox" class="form-textbox" data-defaultvalue="" style="width:310px" size="310" data-component="textbox" aria-labelledby="label_30" value="" />
           </div>
         </li>
+
+		  <li class="form-line" data-type="control_textbox" id="id_31">
+			  <label class="form-label form-label-left form-label-auto" id="label_31" for="input_30" aria-hidden="false"> Attach Medical Records</label>
+			  <fasten-stitch public-key="pub_test_123456324234234"></fasten-stitch>
+		  </li>
         <li class="form-line" data-type="control_button" id="id_52">
           <div id="cid_52" class="form-input-wide" data-layout="full">
             <div data-align="center" class="form-buttons-wrapper form-buttons-center jsTest-button-wrapperField">
               <button type="button" class="form-submit-button submit-button jf-form-buttons jsTest-submitField " data-component="button" data-content="">Submit Form</button>
-              <fasten-stitch></fasten-stitch>
             </div>
           </div>
         </li>
