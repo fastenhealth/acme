@@ -1,0 +1,316 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Acme Care Example - Fasten Connect</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link rel="stylesheet" href="https://cdn.fastenhealth.com/connect/v1/fasten-stitch.css"></head>
+<body>
+<script src="https://cdn.fastenhealth.com/connect/v1/fasten-stitch.js" type="module"></script>
+
+<style type="text/css">
+	@import "https://fonts.googleapis.com/css?family=Inter&display=swap";*,:after,:before{box-sizing:border-box}:focus{outline:0}input,select{outline:0;margin:0;text-align:left}select{-webkit-appearance:none;appearance:none}img{max-width:100%}select::-ms-expand{display:none}button{outline:0}:-ms-input-placeholder{color:#8894ab;font-weight:300;font-family:inherit}.form-dropdown:required:invalid{color:#8894ab;font-weight:300}@supports (-webkit-overflow-scrolling:touch){input{-webkit-appearance:none;appearance:none}}@media (-webkit-min-device-pixel-ratio:1.25),(min-resolution:120dpi),not all{body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}}.form-all{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;margin:72px auto;width:100%}li.form-line:not([data-payment=true]) [data-wrapper-react=true]{display:-ms-flexbox;display:flex;-ms-flex-align:start;align-items:flex-start}.form-line{padding:12px 10px;margin:12px 4px;border-radius:3px;position:relative;width:100%;transition:background-color .15s}.form-line,ul.page-section{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-align:start;align-items:flex-start}ul.page-section{margin:0;padding:0 38px;list-style:none}.form-input{width:calc(100% - 240px)}.page-section>li:nth-child(2):not(.form-line-column):not([data-type=control_head]):not([data-type=control_paymrnt]):not([data-type=control_text]):not([data-type=control_button]):not([data-type=control_collapse]){margin-top:28px}.form-label{display:inline-block;font-weight:500;word-break:break-word}.form-sub-label{font-size:.75em;margin-top:11px;margin-left:2px;display:block;word-break:break-word}.form-sub-label-container{-ms-flex:1 1 100%;flex:1 1 100%}.form-sub-label-container+.form-sub-label-container{margin-left:8px}.form-label:not(.form-label-top){width:230px;margin-right:10px;margin-top:.625em;margin-bottom:.625em}li[data-type=control_radio] .form-label:not(.form-label-top){margin-top:0}.form-input-wide{width:100%}.form-line:not(.fixed-width) .form-dropdown,.form-line:not(.fixed-width) .form-textbox:not(.time-dropdown):not(#productSearch-input){min-width:100%;max-width:100%}.form-textbox{padding:0 .625em}.form-dropdown{padding:0 1.875em 0 .625em;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2357647E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-position:right 10px bottom 50%;background-size:.625em;background-repeat:no-repeat}.form-dropdown,.form-textbox:not(#productSearch-input){font-size:1em;border-radius:4px;border-width:1px;border-style:solid;display:block;min-width:100%;font-family:inherit}.form-dropdown:focus,.form-dropdown:hover,.form-textbox:not(#productSearch-input):focus,.form-textbox:not(#productSearch-input):hover{border-width:2px}.form-dropdown:not([size]),.form-textbox{height:2.5em}.form-radio-item label{width:100%;padding-right:5px;word-break:break-word}.form-radio{position:absolute;opacity:0;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}.form-radio+label{padding-left:30px;min-height:20px;font-size:.9375em;position:relative;cursor:pointer;-webkit-user-select:none;-ms-user-select:none;user-select:none;word-break:break-word}.form-radio+label:before{width:20px;height:20px;border:1px solid;content:"";position:absolute;top:0;left:0}.form-radio+label:after{transform:scale(0);opacity:0;transition:transform .2s,opacity .2s}.form-multiple-column{width:100%;display:inline-block}.form-multiple-column .form-radio-item{float:left}.form-multiple-column .form-radio-item:not(.formRadioOther):not(:last-child){margin-bottom:10px}.form-multiple-column[data-columncount="2"] .form-radio-item{width:50%}.form-radio+label{display:inline-block}.form-radio+label:before{border-radius:50%;transition:border-color .15s}.form-radio+label:after{top:3px;left:3px;width:14px;height:14px;content:"";position:absolute;border-radius:50%}.form-radio:checked+label:after{opacity:1;transform:scale(1)}.form-radio:checked+label:before{border-color:#2e69ff}.form-address-table:has(span.form-address-line+span.form-address-line+span.form-address-line+span.form-address-line):not(:has(.form-address-hiddenLine)) span.form-address-line{-ms-flex:1 0 35%;flex:1 0 35%}.page-section li[data-type=control_button]{padding:0;margin:0;background-color:transparent}.jf-form-buttons{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;height:3em;width:auto;min-width:128px;color:#2c3345;font-size:1em;border-radius:4px;background-color:transparent;border:1px solid;cursor:pointer;font-weight:500;font-family:inherit}.jf-form-buttons:not(.form-pagebreak-back){margin-left:10px}.form-buttons-wrapper{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-pack:center;justify-content:center;position:relative;margin:0 -38px 10px;padding:30px 52px;border-top:1px solid}.submit-button{width:auto;min-width:180px}li[data-type=control_head]{list-style:none}.form-header{margin:0;font-weight:600;line-height:1.45}.header-text{-ms-flex-positive:1;flex-grow:1}.httar{text-align:right}.htvam{margin-top:auto}.htvam{margin-bottom:auto}.form-subHeader{font-weight:500;line-height:1.6}.form-header-group{border-bottom:1px solid;padding:14px;margin-top:1.25em;margin-bottom:.75em}div.header-large{margin:0 -38px;padding:2.5em 52px}.header-large .form-header{font-size:2em}.header-large .form-subHeader{font-size:1em}.header-logo{display:-ms-flexbox;display:flex}.header-logo img{max-width:none}.form-header-group[data-imagealign]{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.form-header-group[data-imagealign=Left] .header-text{margin-left:1.25em}li[data-type=control_fullname] .form-sub-label-container{min-width:0}@media (-ms-high-contrast:none),screen and (-ms-high-contrast:active){.form-buttons-wrapper{-ms-flex-pack:justify;justify-content:space-between}}.form-section{margin:12px 4px}@supports (-webkit-touch-callout:none){.form-line:not(:hover) .form-description{display:none}}.jDropdownWG:not(:hover) .jDropdownWG-dropdown-popover{display:none}body{font-family:Inter,sans-serif;font-size:16px;background-color:#f3f3fe;color:#2c3345}.form-all{border-radius:3px;box-shadow:0 4px 4px rgba(87,100,126,.21);background-color:#fff;max-width:752px}.form-line{margin-top:12px;margin-bottom:12px}.form-label{color:#2c3345}.form-sub-label{color:#57647e}.form-dropdown,.form-textbox{background-color:#fff;border-color:#b8bdc9;color:#2c3345}.form-dropdown:hover,.form-textbox:hover{border-color:rgba(46,105,255,.5);box-shadow:0 0 0 2px rgba(46,105,255,.25)}.form-dropdown:focus,.form-textbox:focus{border-color:#2e69ff;box-shadow:0 0 0 3px rgba(46,105,255,.25)}.form-radio+label:before{background-color:#fff;border-color:#b8bdc9}.form-radio:hover+label:before{border-color:rgba(46,105,255,.5);box-shadow:0 0 0 2px rgba(46,105,255,.25)}.form-radio:focus+label:before{border-color:#2e69ff;box-shadow:0 0 0 3px rgba(46,105,255,.25)}.form-radio+label:after{background-color:#2e69ff}.form-radio+label{color:#2c3345}.form-line-error .form-checkbox:not(:checked)+label:before,.form-line-error .form-radio:not(:checked)+label:before{border-color:#dc2626}.form-line-error .form-checkbox:not(:checked):hover+label:before,.form-line-error .form-radio:not(:checked):hover+label:before{border-color:#fe8e92;box-shadow:0 0 0 2px #ffa5a5}.form-line-error .form-checkbox:not(:checked):focus+label:before,.form-line-error .form-radio:not(:checked):focus+label:before{border-color:#dc2626;box-shadow:0 0 0 3px #ffa5a5}.jf-form-buttons{border-color:#c3cad8}.form-buttons-wrapper{border-color:#e5e7f2}.submit-button{background-color:#18bd5b;border-color:#18bd5b;color:#fff}.submit-button:hover{background-color:#16aa52}.form-header{color:#2c3345;word-break:break-word}.form-subHeader{color:#57647e;word-break:break-word}.form-header-group{border-color:#ededf1}.header-large{border-color:#d7d8e1}.form-spinner-button-container>:before{color:#57647e}.form-spinner-button-container>:hover:before{color:#2e69ff}.page-section li[data-type=control_button]>div:first-child{width:100%}.form-radio-item{position:relative}.form-textbox:not(.validate[Email]){width:100%}@media screen and (max-width:768px){ul.form-section{margin:0;padding:0 14px}ul.page-section{max-width:inherit}.form-header-group.hasImage{-ms-flex-direction:column;flex-direction:column}.form-header-group .header-logo img{max-width:100%}li[data-type=control_head] .form-header-group .header-text{margin-left:0}.form-header-group[data-imagealign=Left] .header-logo{margin:auto}.form-section div.form-header-group.header-large{margin:0 -14px;padding:28px}.form-buttons-wrapper{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.form-buttons-wrapper{margin:0 -14px;padding:30px 14px}.form-line[data-type=control_birthdate] .form-input,.form-line[data-type=control_fullname] .form-input{width:100%}}@media screen and (max-width:480px){ul.form-section{margin:0;padding:0}.form-section div.form-header-group.header-large{margin:0;padding:28px 14px}label.form-label.form-label-auto,label.form-label:not(.form-label-top){width:100%!important;text-align:left!important;-ms-flex-pack:start;justify-content:flex-start}.form-line .form-input{width:100%;margin-top:12px}.form-dropdown,.form-textbox{width:100%!important}.jf-form-buttons{min-width:72px;width:auto}.jf-form-buttons.submit-button{min-width:100px}.form-buttons-wrapper{padding:30px 14px;margin:0}li[data-type=control_fullname] [data-wrapper-react=true]{-ms-flex-wrap:wrap;flex-wrap:wrap}li[data-type=control_fullname] [data-wrapper-react=true] .form-sub-label-container{-ms-flex:1 1 48%;flex:1 1 48%}.form-multiple-column[data-columncount="2"] .form-radio-item{width:100%}div:has(>iframe[src*="google.com/recaptcha"]:not([role=presentation])){position:relative!important}}@media print{.form-section{display:-ms-flexbox!important;display:flex!important}}.v4-widgets-line:has(input[id*="533946093c1ad0c45d000070.labelRemove"]){display:none}li[data-type=control_birthdate] .form-dropdown{max-width:0!important}li[data-type=control_birthdate] .form-sub-label{margin-top:8px}
+</style>
+
+
+  <form accept-charset="utf-8" autocomplete="on">
+
+    <div role="main" class="form-all">
+      <ul class="form-section page-section">
+        <li id="cid_53" class="form-input-wide" data-type="control_head">
+          <div style="display:table;width:100%">
+            <div class="form-header-group hasImage header-large" data-imagealign="Left">
+              <div class="header-logo">
+				  <svg width="120" id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.98633 234.74876"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#161b5b;}.cls-3{fill:#19d8c5;}</style></defs><g id="Layer_1-2"><g><g><path class="cls-2" d="M0,198.36986l10.26465-45.96582h5.48828l10.26465,45.96582h-6.58496l-1.93652-9.87793H8.52148l-1.93652,9.87793H0Zm16.26855-16.0752l-3.22754-16.65625h-.12891l-3.22852,16.65625h6.58496Z"/><path class="cls-2" d="M50.16211,185.26439v2.84082c0,1.41992-.26953,2.76562-.80664,4.03516-.53906,1.26953-1.28125,2.39941-2.22754,3.38867-.94727,.99121-2.05566,1.77539-3.32422,2.35645-1.27051,.58105-2.6377,.87207-4.09961,.87207-1.24902,0-2.51855-.17285-3.80957-.5166s-2.45312-.94629-3.48633-1.80762c-1.03223-.86035-1.88281-1.96973-2.5498-3.3252-.66797-1.35547-1-3.08789-1-5.19727v-25.30664c0-1.50586,.25781-2.90527,.77441-4.19629s1.24805-2.41016,2.19531-3.35742c.94531-.94531,2.0752-1.68848,3.38867-2.22656,1.3125-.53809,2.76465-.80762,4.35742-.80762,3.09961,0,5.61719,1.01172,7.55371,3.03418,.94629,.99121,1.68848,2.16309,2.22754,3.51855,.53711,1.35645,.80664,2.83105,.80664,4.42285v2.58203h-6.58496v-2.19531c0-1.29102-.36621-2.40918-1.09766-3.35645-.73242-.94629-1.72168-1.4209-2.96973-1.4209-1.63574,0-2.72266,.50684-3.25977,1.51758-.53906,1.01172-.80664,2.29199-.80664,3.84082v23.5c0,1.33398,.29004,2.45312,.87109,3.35645,.58105,.9043,1.62402,1.35645,3.13086,1.35645,.42969,0,.89258-.0752,1.38867-.22656,.49414-.15039,.95703-.39746,1.3877-.74219,.3877-.34375,.70996-.81738,.96875-1.41992,.25781-.60254,.38672-1.35645,.38672-2.25977v-2.25977h6.58496Z"/><path class="cls-2" d="M55.52051,198.36986v-45.96582h6.32715l8.45703,24.33887h.12891l8.39258-24.33887h6.3916v45.96582h-6.58496v-27.9541h-.12891l-6.52051,19.75488h-3.29297l-6.45605-19.75488h-.12891v27.9541h-6.58496Z"/><path class="cls-2" d="M91.41504,198.36986v-45.96582h19.62598v6.19727h-13.04102v13.49316h11.3623v6.19727h-11.3623v13.49316h13.04102v6.58496h-19.62598Z"/><path class="cls-2" d="M148.22559,185.26439v2.84082c0,1.41992-.26953,2.76562-.80664,4.03516-.53906,1.26953-1.28125,2.39941-2.22754,3.38867-.94727,.99121-2.05566,1.77539-3.32422,2.35645-1.27051,.58105-2.6377,.87207-4.09961,.87207-1.24902,0-2.51855-.17285-3.80957-.5166s-2.45312-.94629-3.48633-1.80762c-1.03223-.86035-1.88281-1.96973-2.5498-3.3252-.66797-1.35547-1-3.08789-1-5.19727v-25.30664c0-1.50586,.25781-2.90527,.77441-4.19629s1.24805-2.41016,2.19531-3.35742c.94531-.94531,2.0752-1.68848,3.38867-2.22656,1.3125-.53809,2.76465-.80762,4.35742-.80762,3.09961,0,5.61719,1.01172,7.55371,3.03418,.94629,.99121,1.68848,2.16309,2.22754,3.51855,.53711,1.35645,.80664,2.83105,.80664,4.42285v2.58203h-6.58496v-2.19531c0-1.29102-.36621-2.40918-1.09766-3.35645-.73242-.94629-1.72168-1.4209-2.96973-1.4209-1.63574,0-2.72266,.50684-3.25977,1.51758-.53906,1.01172-.80664,2.29199-.80664,3.84082v23.5c0,1.33398,.29004,2.45312,.87109,3.35645,.58105,.9043,1.62402,1.35645,3.13086,1.35645,.42969,0,.89258-.0752,1.38867-.22656,.49414-.15039,.95703-.39746,1.3877-.74219,.3877-.34375,.70996-.81738,.96875-1.41992,.25781-.60254,.38672-1.35645,.38672-2.25977v-2.25977h6.58496Z"/><path class="cls-2" d="M150.61426,198.36986l10.26465-45.96582h5.48828l10.26465,45.96582h-6.58496l-1.93652-9.87793h-8.97461l-1.93652,9.87793h-6.58496Zm16.26855-16.0752l-3.22754-16.65625h-.12891l-3.22852,16.65625h6.58496Z"/><path class="cls-2" d="M179.85938,198.36986v-45.96582h10.58789c7.74707,0,11.62012,4.49805,11.62012,13.49316,0,2.71094-.41895,5.01367-1.25879,6.90723-.83887,1.89453-2.31348,3.42188-4.42188,4.58398l7.10156,20.98145h-6.97266l-6.13281-19.62598h-3.93848v19.62598h-6.58496Zm6.58496-39.76855v14.33203h3.74414c1.16211,0,2.08789-.16113,2.77637-.4834,.68848-.32324,1.22656-.78516,1.61426-1.38867,.34375-.60156,.58105-1.34473,.70996-2.22656s.19336-1.90527,.19336-3.06738-.06445-2.18359-.19336-3.06641c-.12891-.88184-.3877-1.64648-.77441-2.29199-.81836-1.2041-2.36816-1.80762-4.64844-1.80762h-3.42188Z"/><path class="cls-2" d="M207.36035,198.36986v-45.96582h19.62598v6.19727h-13.04102v13.49316h11.3623v6.19727h-11.3623v13.49316h13.04102v6.58496h-19.62598Z"/></g><g><path class="cls-3" d="M26.61621,213.31322h3.46484c.16113,0,.19336,.06348,.25684,.19238,1.05957,3.27246,4.74902,14.69629,5.3916,17.48828h.03125c.70605-2.66309,4.78223-14.24805,5.84082-17.48828,.03223-.12891,.06445-.19238,.22461-.19238h3.33691c.16113,0,.19238,.03125,.19238,.16016l1.05957,20.76172c0,.12793-.06445,.19238-.19238,.19238h-2.31055c-.16113,0-.22461-.03223-.22461-.19238-.25684-7.25195-.5459-17.16797-.5459-18.99707h-.03223c-.7373,2.82422-4.81348,14.76074-6.16113,18.99707-.06348,.16016-.12793,.19238-.25684,.19238h-2.18164c-.19238,0-.22461-.03223-.28906-.19238-1.60449-5.2627-4.8457-15.85254-5.67969-19.0293h-.03223c-.06348,2.66406-.57715,12.19434-.93066,19.0293,0,.16016-.06348,.19238-.22461,.19238h-2.08594c-.16016,0-.22461-.03223-.22461-.19238l1.37988-20.72949c.03223-.16113,.09668-.19238,.19336-.19238Z"/><path class="cls-3" d="M52.67676,226.91868c-.03223,3.17676,1.63672,5.51953,5.13477,5.51953,1.31543,0,2.59863-.22461,3.75391-.80273,.12891-.06348,.19238-.03223,.19238,.12891v1.79688c0,.16016-.06348,.22461-.16016,.28906-1.02637,.54492-2.40625,.86621-4.26758,.86621-5.32715,0-7.28418-3.94727-7.28418-7.92676,0-4.55664,2.53516-8.24609,6.80273-8.24609,4.42871,0,5.96875,3.6582,5.96875,6.35352,0,.80176-.03223,1.37988-.09668,1.66797-.03223,.12891-.0957,.22461-.25684,.22461-.44922,.06445-1.79688,.12891-3.30469,.12891h-6.48242Zm5.64844-1.98926c1.54004,0,1.89258-.03223,1.98926-.06445,.03223-.09668,.03223-.28906,.03223-.38477,0-1.15527-.70605-3.78711-3.59473-3.78711-2.53418,0-3.75391,2.08594-4.04297,4.23633h5.61621Z"/><path class="cls-3" d="M65.77246,226.75853c0-4.71777,3.36914-8.21484,8.40723-8.21484,.83398,0,1.2832,.06348,1.86133,.16016v-6.96387c0-.12793,.06445-.19238,.19238-.19238h2.27832c.12793,0,.16016,.06445,.16016,.16113v20.15137c0,.44922,0,.96289,.06445,1.50879,0,.12793-.03223,.16016-.16016,.22461-1.7334,.83398-3.43359,1.12305-5.13477,1.12305-4.36426,0-7.66895-2.66406-7.66895-7.95801Zm10.26855-5.64844c-.48145-.22461-1.15527-.32031-1.95801-.32031-3.49707,0-5.64746,2.4707-5.64746,5.83984,0,4.2041,2.53516,5.77637,5.23047,5.77637,.80273,0,1.70117-.06445,2.375-.35352v-10.94238Z"/><path class="cls-3" d="M83.42383,214.17943c0-.93066,.6416-1.60449,1.57227-1.60449,.99512,0,1.57227,.67383,1.57227,1.60449,0,.96289-.6416,1.60449-1.60449,1.60449-.93066,0-1.54004-.6416-1.54004-1.60449Zm.25684,4.87695c0-.16016,.03223-.22461,.19238-.22461h2.21387c.16113,0,.22461,.03223,.22461,.19238v15.17871c0,.16016-.06348,.22461-.22461,.22461h-2.18164c-.16016,0-.22461-.06445-.22461-.22461v-15.14648Z"/><path class="cls-3" d="M101.2666,234.01048c0,.12793,0,.19238-.12793,.25684-.96289,.38477-2.15039,.44922-3.30566,.44922-5.00586,0-7.60449-3.62598-7.60449-8.02246,0-4.65332,3.20898-8.15039,8.05469-8.15039,1.50781,0,2.37402,.16016,2.85547,.38477,.12793,.06445,.16016,.12793,.16016,.28906l-.03223,1.95703c0,.16016-.0957,.16016-.19238,.12891-.76953-.32129-1.54004-.4502-2.79102-.4502-3.17773,0-5.3916,2.21484-5.3916,5.71191,0,3.97949,2.53516,5.80859,5.3916,5.80859,1.12305,0,2.05371-.12793,2.82324-.41699,.12891-.03223,.16016,.03223,.16016,.12793v1.92578Z"/><path class="cls-3" d="M115.64551,224.44798v7.34863c0,.54492,0,.99414,.06445,1.50781,0,.03223,0,.09668-.06445,.12793-2.15039,.99512-3.88281,1.28418-5.74414,1.28418-3.33691,0-5.77637-1.70117-5.77637-4.97363,0-3.40234,3.08105-4.91016,6.89941-4.91016,1.09082,0,1.7334,.03223,2.05371,.06445v-.83496c0-1.02637-.41699-3.20898-3.43359-3.20898-1.47559,0-2.82324,.35352-3.91504,.93066-.0957,.03223-.19238,0-.19238-.16016v-1.89355c0-.12793,.03223-.19238,.16016-.25586,1.15527-.57812,2.69629-.93066,4.36426-.93066,3.94727,0,5.58398,2.59863,5.58398,5.9043Zm-2.56738,2.53516c-.41699-.06445-1.05859-.09668-1.95703-.09668-2.98438,0-4.42871,1.02734-4.42871,2.85645,0,1.41113,.93066,2.85547,3.6582,2.85547,1.02734,0,1.89355-.16016,2.72754-.51367v-5.10156Z"/><path class="cls-3" d="M120.58984,211.73997c0-.12793,.06445-.19238,.22461-.19238h2.18262c.16016,0,.22461,.06445,.22461,.19238v19.35059c0,1.15527,.44922,1.44336,1.18652,1.44336,.22461,0,.35352-.03223,.61035-.0957,.0957,0,.12793,.03223,.12793,.16016v1.66895c0,.16016-.03223,.19238-.16016,.25684-.28906,.12793-.80273,.22461-1.44434,.22461-1.47559,0-2.95215-.5459-2.95215-3.46582v-19.54297Z"/><path class="cls-3" d="M150.17773,233.85032c0,.16016-.06445,.28809-.19238,.32031-.96289,.41699-2.375,.5459-4.04297,.5459-5.13477,0-10.36523-3.04883-10.36523-10.87891,0-6.41699,4.26758-10.8457,10.78223-10.8457,1.95703,0,3.17676,.22461,3.85059,.5459,.09668,.03125,.16016,.12793,.16016,.28809v2.05371c0,.22461-.12793,.22461-.22461,.16113-.83398-.41797-2.18164-.67383-3.85059-.67383-4.78125,0-8.05469,3.24023-8.05469,8.375,0,6.77051,4.78125,8.59961,7.95898,8.59961,1.54004,0,2.66309-.12793,3.78613-.54492,.09668-.03223,.19238-.03223,.19238,.12793v1.92578Z"/><path class="cls-3" d="M153.80762,211.73997c0-.12793,.06445-.19238,.22461-.19238h2.18262c.16016,0,.22461,.06445,.22461,.19238v19.35059c0,1.15527,.44922,1.44336,1.18652,1.44336,.22461,0,.35352-.03223,.61035-.0957,.0957,0,.12793,.03223,.12793,.16016v1.66895c0,.16016-.03223,.19238-.16016,.25684-.28906,.12793-.80273,.22461-1.44434,.22461-1.47559,0-2.95215-.5459-2.95215-3.46582v-19.54297Z"/><path class="cls-3" d="M161.70312,214.17943c0-.93066,.6416-1.60449,1.57227-1.60449,.99512,0,1.57227,.67383,1.57227,1.60449,0,.96289-.6416,1.60449-1.60449,1.60449-.93066,0-1.54004-.6416-1.54004-1.60449Zm.25684,4.87695c0-.16016,.03223-.22461,.19238-.22461h2.21387c.16113,0,.22461,.03223,.22461,.19238v15.17871c0,.16016-.06348,.22461-.22461,.22461h-2.18164c-.16016,0-.22461-.06445-.22461-.22461v-15.14648Z"/><path class="cls-3" d="M169.56641,222.45775c0-1.09082-.06445-2.8877-.0957-3.43359-.03223-.12793,.03125-.19238,.19238-.19238h1.9248c.12891,0,.22461,.06445,.25684,.19238,.09668,.28906,.16016,.86719,.19238,1.50879,1.34766-1.31543,2.95215-1.98926,4.71777-1.98926,2.14941,0,5.00586,1.05859,5.00586,6v9.65918c0,.16016-.09668,.22461-.22461,.22461h-2.18262c-.16016,0-.22461-.06445-.22461-.22461v-9.43457c0-2.31055-.99414-3.91504-3.14453-3.91504-1.54004,0-2.82422,.70605-3.78613,1.89355v11.45605c0,.16016-.06445,.22461-.19336,.22461h-2.21387c-.16016,0-.22461-.06445-.22461-.22461v-11.74512Z"/><path class="cls-3" d="M186.48047,214.17943c0-.93066,.6416-1.60449,1.57227-1.60449,.99512,0,1.57227,.67383,1.57227,1.60449,0,.96289-.6416,1.60449-1.60449,1.60449-.93066,0-1.54004-.6416-1.54004-1.60449Zm.25684,4.87695c0-.16016,.03223-.22461,.19238-.22461h2.21387c.16113,0,.22461,.03223,.22461,.19238v15.17871c0,.16016-.06348,.22461-.22461,.22461h-2.18164c-.16016,0-.22461-.06445-.22461-.22461v-15.14648Z"/><path class="cls-3" d="M204.32324,234.01048c0,.12793,0,.19238-.12793,.25684-.96289,.38477-2.15039,.44922-3.30566,.44922-5.00586,0-7.60449-3.62598-7.60449-8.02246,0-4.65332,3.20898-8.15039,8.05469-8.15039,1.50781,0,2.37402,.16016,2.85547,.38477,.12793,.06445,.16016,.12793,.16016,.28906l-.03223,1.95703c0,.16016-.0957,.16016-.19238,.12891-.76953-.32129-1.54004-.4502-2.79102-.4502-3.17773,0-5.3916,2.21484-5.3916,5.71191,0,3.97949,2.53516,5.80859,5.3916,5.80859,1.12305,0,2.05371-.12793,2.82324-.41699,.12891-.03223,.16016,.03223,.16016,.12793v1.92578Z"/></g><path class="cls-3" d="M177.55021,79.33264c-9.33126-9.31942-18.65706-18.64409-27.98446-27.96692l1.05277-16.21456c.102-1.56868-1.08692-2.92267-2.65515-3.02375l-6.90539-.44875c-1.56823-.102-2.92221,1.08715-3.02398,2.65492l-.33582,5.17141c-2.65515-2.65401-5.31098-5.30802-7.96612-7.96203-4.34677-4.34472-8.69036-8.69241-13.04282-13.03189-1.61467-1.60944-3.63256-1.67774-5.17073-.14366-6.45482,6.4341-12.89119,12.88573-19.35193,19.31436-.02687,.02687-.03552,.04895-.05874,.07468l-8.96357,8.9638c-.03165,.02709-.05806,.03711-.09175,.07081-10.95003,10.96415-21.91509,21.91441-32.87287,32.8715-.23906,.2386-.46036,.50976-.62952,.80164-1.30845,2.25398,.26797,5.06668,2.89375,5.08877,4.35952,.03643,8.71973,.02231,13.07971,.00273,.58512-.00364,.85333,.10997,.99836,.75816,1.35558,6.06777,2.76102,12.12324,4.1487,18.18395,2.17862,9.51249,4.36157,19.0243,6.51788,28.54226,.15869,.69987,.45376,.88429,1.15955,.88429,23.79614-.0214,47.59206-.02049,71.38798-.00182,.68166,.00091,.92618-.1917,1.07964-.86562,3.53966-15.55203,7.1128-31.097,10.65246-46.64926,.15482-.68007,.41437-.86175,1.0876-.85742,4.30716,.03119,8.61477,.02595,12.92215,.00979,1.89357-.00706,3.25166-1.23696,3.44586-3.10435,.13342-1.28568-.49679-2.24693-1.37356-3.12302Zm-54.88928-27.68871c.00023-.00159,.00046-.00342,.00068-.00615,.00729-.00797,.01434-.01685,.02163-.02482-.00592,.0107-.0148,.0214-.02231,.03096Z"/><polygon class="cls-1" points="136.61837 80.06119 121.76861 80.06119 121.76861 65.21143 106.25393 65.21143 106.25393 80.06119 91.40417 80.06119 91.40417 95.57587 106.25393 95.57587 106.25393 110.42563 121.76861 110.42563 121.76861 95.57587 136.61837 95.57587 136.61837 80.06119"/><path class="cls-3" d="M149.19305,8.22918c-1.86887-1.86885-4.89926-1.86885-6.76873,0l-1.09669,1.09667-1.0966-1.09667c-1.86952-1.86885-4.8999-1.86885-6.76873,0-1.86887,1.86888-1.86887,4.89927,0,6.76876l1.09665,1.09665,6.76869,6.76873,6.76873-6.76873,1.09669-1.09665c1.86883-1.86949,1.86883-4.89988,0-6.76876Z"/><path class="cls-3" d="M157.03689,21.25066c-.8906-.89059-2.33472-.89059-3.2256,0l-.52262,.52261-.52258-.52261c-.89091-.89059-2.33502-.89059-3.2256,0-.8906,.8906-.8906,2.33472,0,3.22562l.5226,.5226,3.22558,3.2256,3.2256-3.2256,.52262-.5226c.89058-.8909,.89058-2.33501,0-3.22562Z"/><path class="cls-3" d="M156.06247,.46319c-.61759-.61758-1.61901-.61758-2.2368,0l-.36241,.36241-.36238-.36241c-.6178-.61758-1.61922-.61758-2.2368,0-.61759,.61759-.61759,1.61901,0,2.23681l.3624,.3624,2.23678,2.2368,2.2368-2.2368,.36241-.3624c.61757-.61779,.61757-1.61922,0-2.23681Z"/></g></g></svg>
+              </div>
+              <div class="header-text httar htvam">
+                <h1 id="header_53" class="form-header" data-component="header">New Patient Registration</h1>
+                <div id="subHeader_53" class="form-subHeader">Your Health Is our Priority</div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="form-line" data-type="control_fullname" id="id_54">
+          <label class="form-label form-label-left form-label-auto" id="label_54" for="first_54" aria-hidden="false"> Name </label>
+          <div id="cid_54" class="form-input" data-layout="full">
+            <div data-wrapper-react="true">
+							<span class="form-sub-label-container" style="vertical-align:top" data-input-type="first">
+								<input type="text" id="first_54" name="q54_name[first]" class="form-textbox" data-defaultvalue="" autoComplete="section-input_54 given-name" size="10" data-component="first" aria-labelledby="label_54 sublabel_54_first" value="" />
+								<label class="form-sub-label" for="first_54" id="sublabel_54_first" style="min-height:13px">First Name</label>
+							</span>
+              <span class="form-sub-label-container" style="vertical-align:top" data-input-type="last">
+								<input type="text" id="last_54" name="q54_name[last]" class="form-textbox" data-defaultvalue="" autoComplete="section-input_54 family-name" size="15" data-component="last" aria-labelledby="label_54 sublabel_54_last" value="" />
+								<label class="form-sub-label" for="last_54" id="sublabel_54_last" style="min-height:13px">Last Name</label>
+							</span>
+            </div>
+          </div>
+        </li>
+        <li class="form-line" data-type="control_birthdate" id="id_56">
+          <label class="form-label form-label-left form-label-auto" id="label_56" for="input_56" aria-hidden="false"> Birth Date </label>
+          <div id="cid_56" class="form-input" data-layout="full">
+            <div data-wrapper-react="true">
+							<span class="form-sub-label-container" style="vertical-align:top">
+								<select name="q56_birthDate[month]" id="input_56_month" class="form-dropdown" data-component="birthdate-month" aria-labelledby="label_56 sublabel_56_month">
+									<option value="">Please select a month</option>
+									<option value="1">January</option>
+									<option value="2">February</option>
+									<option value="3">March</option>
+									<option value="4">April</option>
+									<option value="5">May</option>
+									<option value="6">June</option>
+									<option value="7">July</option>
+									<option value="8">August</option>
+									<option value="9">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+								</select>
+								<label class="form-sub-label" for="input_56_month" id="sublabel_56_month" style="min-height:13px">Month</label>
+							</span>
+              <span class="form-sub-label-container" style="vertical-align:top">
+								<select name="q56_birthDate[day]" id="input_56_day" class="form-dropdown" data-component="birthdate-day" aria-labelledby="label_56 sublabel_56_day">
+									<option value="">Please select a day</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+								<label class="form-sub-label" for="input_56_day" id="sublabel_56_day" style="min-height:13px">Day</label>
+							</span>
+              <span class="form-sub-label-container" style="vertical-align:top">
+								<select name="q56_birthDate[year]" id="input_56_year" class="form-dropdown" data-component="birthdate-year" aria-labelledby="label_56 sublabel_56_year">
+									<option value="">Please select a year</option>
+									<option value="2024">2024</option>
+									<option value="2023">2023</option>
+									<option value="2022">2022</option>
+									<option value="2021">2021</option>
+									<option value="2020">2020</option>
+									<option value="2019">2019</option>
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+									<option value="2015">2015</option>
+									<option value="2014">2014</option>
+									<option value="2013">2013</option>
+									<option value="2012">2012</option>
+									<option value="2011">2011</option>
+									<option value="2010">2010</option>
+									<option value="2009">2009</option>
+									<option value="2008">2008</option>
+									<option value="2007">2007</option>
+									<option value="2006">2006</option>
+									<option value="2005">2005</option>
+									<option value="2004">2004</option>
+									<option value="2003">2003</option>
+									<option value="2002">2002</option>
+									<option value="2001">2001</option>
+									<option value="2000">2000</option>
+									<option value="1999">1999</option>
+									<option value="1998">1998</option>
+									<option value="1997">1997</option>
+									<option value="1996">1996</option>
+									<option value="1995">1995</option>
+									<option value="1994">1994</option>
+									<option value="1993">1993</option>
+									<option value="1992">1992</option>
+									<option value="1991">1991</option>
+									<option value="1990">1990</option>
+									<option value="1989">1989</option>
+									<option value="1988">1988</option>
+									<option value="1987">1987</option>
+									<option value="1986">1986</option>
+									<option value="1985">1985</option>
+									<option value="1984">1984</option>
+									<option value="1983">1983</option>
+									<option value="1982">1982</option>
+									<option value="1981">1981</option>
+									<option value="1980">1980</option>
+									<option value="1979">1979</option>
+									<option value="1978">1978</option>
+									<option value="1977">1977</option>
+									<option value="1976">1976</option>
+									<option value="1975">1975</option>
+									<option value="1974">1974</option>
+									<option value="1973">1973</option>
+									<option value="1972">1972</option>
+									<option value="1971">1971</option>
+									<option value="1970">1970</option>
+									<option value="1969">1969</option>
+									<option value="1968">1968</option>
+									<option value="1967">1967</option>
+									<option value="1966">1966</option>
+									<option value="1965">1965</option>
+									<option value="1964">1964</option>
+									<option value="1963">1963</option>
+									<option value="1962">1962</option>
+									<option value="1961">1961</option>
+									<option value="1960">1960</option>
+									<option value="1959">1959</option>
+									<option value="1958">1958</option>
+									<option value="1957">1957</option>
+									<option value="1956">1956</option>
+									<option value="1955">1955</option>
+									<option value="1954">1954</option>
+									<option value="1953">1953</option>
+									<option value="1952">1952</option>
+									<option value="1951">1951</option>
+									<option value="1950">1950</option>
+									<option value="1949">1949</option>
+									<option value="1948">1948</option>
+									<option value="1947">1947</option>
+									<option value="1946">1946</option>
+									<option value="1945">1945</option>
+									<option value="1944">1944</option>
+									<option value="1943">1943</option>
+									<option value="1942">1942</option>
+									<option value="1941">1941</option>
+									<option value="1940">1940</option>
+									<option value="1939">1939</option>
+									<option value="1938">1938</option>
+									<option value="1937">1937</option>
+									<option value="1936">1936</option>
+									<option value="1935">1935</option>
+									<option value="1934">1934</option>
+									<option value="1933">1933</option>
+									<option value="1932">1932</option>
+									<option value="1931">1931</option>
+									<option value="1930">1930</option>
+									<option value="1929">1929</option>
+									<option value="1928">1928</option>
+									<option value="1927">1927</option>
+									<option value="1926">1926</option>
+									<option value="1925">1925</option>
+									<option value="1924">1924</option>
+									<option value="1923">1923</option>
+									<option value="1922">1922</option>
+									<option value="1921">1921</option>
+									<option value="1920">1920</option>
+								</select>
+								<label class="form-sub-label" for="input_56_year" id="sublabel_56_year" style="min-height:13px">Year</label>
+							</span>
+            </div>
+          </div>
+        </li>
+        <li class="form-line" data-type="control_textbox" id="id_12">
+          <label class="form-label form-label-left form-label-auto" id="label_12" for="input_12" aria-hidden="false"> Email Address </label>
+          <div id="cid_12" class="form-input" data-layout="half">
+            <input type="text" id="input_12" name="q12_emailAddress" data-type="input-textbox" class="form-textbox" data-defaultvalue="" style="width:310px" size="310" data-component="textbox" aria-labelledby="label_12" value="" />
+          </div>
+        </li>
+        <li class="form-line" data-type="control_textbox" id="id_14">
+          <label class="form-label form-label-left form-label-auto" id="label_14" for="input_14" aria-hidden="false"> Home Phone </label>
+          <div id="cid_14" class="form-input" data-layout="half">
+            <input type="text" id="input_14" name="q14_homePhone" data-type="input-textbox" class="form-textbox" data-defaultvalue="" style="width:310px" size="310" data-component="textbox" aria-labelledby="label_14" value="" />
+          </div>
+        </li>
+        <li class="form-line" data-type="control_dropdown" id="id_16">
+          <label class="form-label form-label-left form-label-auto" id="label_16" for="input_16" aria-hidden="false"> Preferred Method of Contact </label>
+          <div id="cid_16" class="form-input" data-layout="half">
+            <select class="form-dropdown" id="input_16" name="q16_preferredMethod" style="width:310px" data-component="dropdown" aria-label="Preferred Method of Contact">
+              <option value="">Please Select</option>
+              <option value="Mail">Mail</option>
+              <option value="Cell Phone">Cell Phone</option>
+              <option value="Work Phone">Work Phone</option>
+              <option value="Home Phone">Home Phone</option>
+            </select>
+          </div>
+        </li>
+        <li class="form-line" data-type="control_textbox" id="id_17">
+          <label class="form-label form-label-left form-label-auto" id="label_17" for="input_17" aria-hidden="false"> Driver's License </label>
+          <div id="cid_17" class="form-input" data-layout="half">
+            <input type="text" id="input_17" name="q17_driversLicense" data-type="input-textbox" class="form-textbox" data-defaultvalue="" style="width:310px" size="310" data-component="textbox" aria-labelledby="label_17" value="" />
+          </div>
+        </li>
+        <li class="form-line" data-type="control_textbox" id="id_18">
+          <label class="form-label form-label-left form-label-auto" id="label_18" for="input_18" aria-hidden="false"> Social Security Number </label>
+          <div id="cid_18" class="form-input" data-layout="half">
+            <input type="text" id="input_18" name="q18_socialSecurity" data-type="input-textbox" class="form-textbox" data-defaultvalue="" style="width:310px" size="310" data-component="textbox" aria-labelledby="label_18" value="" />
+          </div>
+        </li>
+        <li class="form-line" data-type="control_radio" id="id_19">
+          <label class="form-label form-label-left form-label-auto" id="label_19" aria-hidden="false"> Single </label>
+          <div id="cid_19" class="form-input" data-layout="full">
+            <div class="form-multiple-column" data-columncount="2" role="group" aria-labelledby="label_19" data-component="radio">
+							<span class="form-radio-item">
+								<span class="dragger-item"></span>
+								<input type="radio" aria-describedby="label_19" class="form-radio" id="input_19_0" name="q19_single" value="Single" />
+								<label id="label_input_19_0" for="input_19_0">Single</label>
+							</span>
+              <span class="form-radio-item">
+								<span class="dragger-item"></span>
+								<input type="radio" aria-describedby="label_19" class="form-radio" id="input_19_1" name="q19_single" value="Married" />
+								<label id="label_input_19_1" for="input_19_1">Married</label>
+							</span>
+              <span class="form-radio-item" style="clear:left">
+								<span class="dragger-item"></span>
+								<input type="radio" aria-describedby="label_19" class="form-radio" id="input_19_2" name="q19_single" value="Divorced" />
+								<label id="label_input_19_2" for="input_19_2">Divorced</label>
+							</span>
+              <span class="form-radio-item">
+								<span class="dragger-item"></span>
+								<input type="radio" aria-describedby="label_19" class="form-radio" id="input_19_3" name="q19_single" value="Widowed" />
+								<label id="label_input_19_3" for="input_19_3">Widowed</label>
+							</span>
+            </div>
+          </div>
+        </li>
+        <li class="form-line" data-type="control_textbox" id="id_28">
+          <label class="form-label form-label-left form-label-auto" id="label_28" for="input_28" aria-hidden="false"> Current Employer </label>
+          <div id="cid_28" class="form-input" data-layout="half">
+            <input type="text" id="input_28" name="q28_currentEmployer" data-type="input-textbox" class="form-textbox" data-defaultvalue="" style="width:310px" size="310" data-component="textbox" aria-labelledby="label_28" value="" />
+          </div>
+        </li>
+        <li class="form-line" data-type="control_textbox" id="id_30">
+          <label class="form-label form-label-left form-label-auto" id="label_30" for="input_30" aria-hidden="false"> Primary Care Provider </label>
+          <div id="cid_30" class="form-input" data-layout="half">
+            <input type="text" id="input_30" name="q30_primaryCare" data-type="input-textbox" class="form-textbox" data-defaultvalue="" style="width:310px" size="310" data-component="textbox" aria-labelledby="label_30" value="" />
+          </div>
+        </li>
+
+		  <li class="form-line" data-type="control_textbox" id="id_31">
+			  <label class="form-label form-label-left form-label-auto" id="label_31" for="input_30" aria-hidden="false"> Attach Medical Records</label>
+			  <fasten-stitch public-id="public_live_luezin9lp65gprse02h0jox7dmkhi5406kujj4fjsar1b"></fasten-stitch>
+		  </li>
+        <li class="form-line" data-type="control_button" id="id_52">
+          <div id="cid_52" class="form-input-wide" data-layout="full">
+            <div data-align="center" class="form-buttons-wrapper form-buttons-center jsTest-button-wrapperField">
+              <button type="button" class="form-submit-button submit-button jf-form-buttons jsTest-submitField " data-component="button" data-content="">Submit Form</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </form>
+
+</body>
+</html>
