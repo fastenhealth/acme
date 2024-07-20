@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Shop Item - Start Bootstrap Template</title>
+    <title>Thank You</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -13,68 +13,103 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="https://cdn.jsdelivr.net/gh/StartBootstrap/startbootstrap-shop-item@master/dist/css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Inter&display=swap";
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f3fe;
+            color: #2c3345;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .thank-you-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 4px rgba(87, 100, 126, 0.21);
+        }
+
+
+        .thank-you-container p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        .contact-info {
+            font-size: smaller;
+            color: #555;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .thank-you-image {
+            width: 150px;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body x-data="pageRedirectData()" x-init="redirectInit()">
+<div class="thank-you-container">
+    <img class="card-img-top mb-5 mb-md-0" src="https://t3.ftcdn.net/jpg/02/91/52/22/360_F_291522205_XkrmS421FjSGTMRdTrqFZPxDY19VxpmL.jpg" alt="..." />
+    <p>Thank you for submitting your medical records. <br/> A researcher will contact you if you are eligible for the study.</p>
+    <div class="contact-info mb-4">
+        <p>For any queries, please contact us:</p>
+        <p>Email: research@example.org</p>
+        <p>Phone: (555) 123-7890</p>
+    </div>
 
-    <!-- Product section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://cdn.icon-icons.com/icons2/1508/PNG/512/checkbox_103909.png" alt="..." /></div>
-                <div class="col-md-6">
-                    <div class="small mb-1">Acme Health</div>
-                    <h1 class="display-5 fw-bolder">Please wait</h1>
+    <button @click="showBackendCode = !showBackendCode" class="btn btn-outline-dark flex-shrink-0" type="button">
+        <i class="bi-terminal-fill me-1"></i>
+        View Backend Code
+    </button>
+</div>
 
-                    <p class="lead">Thanks for connecting your medical records. Please wait while we process your records</p>
-                    <div class="d-flex">
-                        <button @click="showBackendCode = !showBackendCode" class="btn btn-outline-dark flex-shrink-0" type="button">
-                            <i class="bi-terminal-fill me-1"></i>
-                            View Backend Code
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Related items section-->
-    <section x-show="showBackendCode" class="py-5 bg-light">
+<section x-show="showBackendCode" class="py-5  rounded mt-5">
 
 
-        <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder mb-4">Backend Code (Running Server Side)</h2>
-            <div class="row">
-                <div class="col">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Backend Code (Running Server Side)</h2>
+        <div class="row">
+            <div class="col">
 
 
-                    <div class="accordion" id="accordionExample">
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h2>
-                                    Step 1: Parse Querystring Parameters
-                                </h2>
-                            </div>
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <p>Extract and process the <strong><i>org_connection_id</i></strong> query string parameter in the URL.</p>
-                                    <pre><code x-text="JSON.stringify(queryParams)" class="language-json"></code></pre>
-                                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2>
+                                Step 1: Parse Querystring Parameters
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>Extract and process the <strong><i>org_connection_id</i></strong> query string parameter in the URL.</p>
+                                <pre><code x-text="JSON.stringify(queryParams, null, 4)" class="language-json"></code></pre>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header" id="headingTwo">
-                                <h2>
-                                    Step 2: Fetch Medical Records
-                                </h2>
-                            </div>
-                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <p>Make a request to the Fasten Connect API, triggering the collection of the patient's medical records (identified using the <strong><i>org_connection_id</i></strong>)
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2>
+                                Step 2: Fetch Medical Records
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>Make a request to the Fasten Connect API, triggering the collection of the patient's medical records (identified using the <strong><i>org_connection_id</i></strong>)
                                     <br/>
-                                        Note: You must use your API credentials to authenticate the request. Replace the placeholders with your actual credentials.
-                                        These credentials are available in your Fasten Health account dashboard.
-                                    </p>
-                                    <pre><code class="language-bash">
+                                    Note: You must use your API credentials to authenticate the request. Replace the placeholders with your actual credentials.
+                                    These credentials are available in your Fasten Health account dashboard.
+                                </p>
+                                <pre><code class="language-bash">
 
 curl -u 'public_test_rei2un7aagh5pquwikxh2dsyq23bsdyu4l8vm9eq29ftu':'private_test_9u2orj....sd02lk3)i03423' \
 -X POST \
@@ -82,58 +117,55 @@ curl -u 'public_test_rei2un7aagh5pquwikxh2dsyq23bsdyu4l8vm9eq29ftu':'private_tes
 https://api.connect-dev.fastenhealth.com/v1/bridge/fhir/ehi-export
 
                                     </code></pre>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <h2>
-                                    Step 3: Wait for Webhook Notification
-                                </h2>
-                            </div>
-                            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    <p>On completion, a webhook will be sent to the following url:
-                                        <br/>
-                                        <code>https://en0iulj15w1e4u.x.pipedream.net/</code>
-                                        <br/>
-                                        You can view these webhook payloads by visiting the following link:
-                                        <a href="https://public.requestbin.com/r/en0iulj15w1e4u">https://public.requestbin.com/r/en0iulj15w1e4u</a>
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2>
+                                Step 3: Wait for Webhook Notification
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>On completion, a webhook will be sent to the following url:
+                                    <br/>
+                                    <code>https://en0iulj15w1e4u.x.pipedream.net/</code>
+                                    <br/>
+                                    You can view these webhook payloads by visiting the following link:
+                                    <a href="https://public.requestbin.com/r/en0iulj15w1e4u">https://public.requestbin.com/r/en0iulj15w1e4u</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-
         </div>
-    </section>
-    <!-- Footer-->
-    <footer class="py-5 bg-dark">
-        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Fasten Health, Inc.</p></div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script type="module">
-        import alpinejs from 'https://cdn.skypack.dev/alpinejs@v3.13.4';
-        alpinejs.data('pageRedirectData', pageRedirectData);
-        alpinejs.start();
+    </div>
+</section>
 
-        export function pageRedirectData(){
-            return {
-                showBackendCode: false,
-                queryParams: Object.fromEntries(new URLSearchParams(window.location.search)),
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-                redirectInit(){
+<script type="module">
+    import alpinejs from 'https://cdn.skypack.dev/alpinejs@v3.13.4';
+    alpinejs.data('pageRedirectData', pageRedirectData);
+    alpinejs.start();
 
-                }
+    export function pageRedirectData(){
+        return {
+            showBackendCode: false,
+            queryParams: Object.fromEntries(new URLSearchParams(window.location.search)),
+
+            redirectInit(){
 
             }
-        }
 
-    </script>
+        }
+    }
+
+</script>
 </body>
 </html>
