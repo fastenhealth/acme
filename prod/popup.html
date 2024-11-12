@@ -227,6 +227,9 @@
 		  <li class="form-line" data-type="control_textbox" id="id_31">
 			  <label class="form-label form-label-left form-label-auto" id="label_31" aria-hidden="false"> Attach Medical Records</label>
 			  <fasten-stitch public-id="public_test_6f5j7qj54rlyajv6u8r36z0iu5v9qjf87f77tzl3k6ezu" connect-mode="popup" external-id="user-opaque-id-8923472" external-state="custom-opaque-state-id"></fasten-stitch>
+
+			  <ul id="connectedSources">
+			  </ul>
 		  </li>
         <li class="form-line" data-type="control_button" id="id_52">
           <div id="cid_52" class="form-input-wide" data-layout="full">
@@ -242,7 +245,17 @@
 
 <script type="application/javascript">
 	const el = document.querySelector('fasten-stitch');
-	el.addEventListener('orgConnectionCallback', (event) => console.log(event.detail));
+	el.addEventListener('orgConnectionCallback', (event) => {
+		if(event.detail.error){
+			console.error(event.detail.error)
+		}
+		console.log(event.detail)
+
+
+		var liItem = document.createElement( "li" );
+		liItem.appendChild( document.createTextNode("connection_id: " + event.detail.org_connection_id ) );
+		document.getElementById("connectedSources").appendChild( liItem );
+	});
 </script>
 </body>
 </html>
