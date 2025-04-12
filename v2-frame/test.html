@@ -118,8 +118,8 @@
 
     <nav class="z-100 flex shrink-0 grow-0 justify-around gap-4 border-t border-gray-200 bg-white/50 p-2.5 shadow-lg backdrop-blur-lg  fixed top-2/4 -translate-y-2/4 right-6 min-h-[auto] min-w-[64px] flex-col rounded-lg border">
         <button
-                @click="toggleAnonymousVaultProfile"
-                :class="{ 'bg-indigo-50 text-indigo-600': anonymousVaultProfile, 'text-gray-700 hover:bg-gray-100': !anonymousVaultProfile }"
+                @click="toggleSearchOnly"
+                :class="{ 'bg-indigo-50 text-indigo-600': searchOnly, 'text-gray-700 hover:bg-gray-100': !searchOnly }"
                 class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 "
         >
             <!-- HeroIcon - Search -->
@@ -206,7 +206,7 @@
         <fasten-stitch-element
                 external-id="1235-123412-123123$^#*@(!"
                 :public-id="publicId"
-                :anonymous-vault-profile="anonymousVaultProfile"
+                :search-only="searchOnly"
                 :static-backdrop="staticBackdrop"
                 :reconnect-org-connection-id="reconnectOrgConnectionId"
 
@@ -233,7 +233,7 @@
 
         export function pageData() {
             return {
-                anonymousVaultProfile: false,
+                searchOnly: false,
                 publicId: 'public_test_rei2un7aagh5pquwikxh2dsyq23bsdyu4l8vm9eq29ftu',
                 staticBackdrop: false,
                 reconnectOrgConnectionId: "",
@@ -241,8 +241,8 @@
                 toggleStaticBackdrop() {
                     this.staticBackdrop = !this.staticBackdrop;
                 },
-                toggleAnonymousVaultProfile() {
-                    this.anonymousVaultProfile = !this.anonymousVaultProfile;
+                toggleSearchOnly() {
+                    this.searchOnly = !this.searchOnly;
                 },
                 toggleReconnectOrgConnectionId() {
                     this.reconnectOrgConnectionId = this.reconnectOrgConnectionId ? "" : "c2f0358c-f330-49ed-b32f-8018296873a2";
