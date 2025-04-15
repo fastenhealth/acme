@@ -215,7 +215,7 @@
 
     <script type="application/javascript">
         const el = document.querySelector('fasten-stitch-element');
-        el.addEventListener('orgConnectionCallback', (event) => console.log(event.detail));
+        el.addEventListener('eventBus', (event) => console.log("EVENT BUS:", event.detail));
 
 
         window.addEventListener('DOMContentLoaded',function () {
