@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Thank You</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="https://cdn.jsdelivr.net/gh/StartBootstrap/startbootstrap-shop-item@master/dist/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Inter&display=swap";
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f3fe;
+            color: #2c3345;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /*justify-content: center;*/
+            /*height: 100vh;*/
+            margin: 0;
+        }
+
+        .thank-you-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 4px rgba(87, 100, 126, 0.21);
+        }
+
+
+        .thank-you-container p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        .contact-info {
+            font-size: smaller;
+            color: #555;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .thank-you-image {
+            width: 150px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body x-data="pageRedirectData()" x-init="redirectInit()">
+<div class="thank-you-container">
+    <img class="card-img-top mb-5 mb-md-0" src="https://t3.ftcdn.net/jpg/02/91/52/22/360_F_291522205_XkrmS421FjSGTMRdTrqFZPxDY19VxpmL.jpg" alt="..." />
+    <p>Thank you for submitting your medical records. <br/> A researcher will contact you if you are eligible for the study.</p>
+    <div class="contact-info mb-4">
+        <p>For any queries, please contact us:</p>
+        <p>Email: research@example.org</p>
+        <p>Phone: (555) 123-7890</p>
+    </div>
+
+    <button @click="showBackendCode = !showBackendCode" class="btn btn-outline-dark flex-shrink-0" type="button">
+        <i class="bi-terminal-fill me-1"></i>
+        View Backend Code
+    </button>
+    <a class="btn btn-outline-dark flex-shrink-0" href="https://docs.connect.fastenhealth.com/quickstart">
+        <i class="bi-info-circle me-1"></i>
+        Developer Docs
+    </a>
+</div>
+
+<section x-show="showBackendCode" class="py-5  rounded mt-5">
+
+
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Backend Code (Running Server Side)</h2>
+        <div class="row">
+            <div class="col">
+
+
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2>
+                                Step 1: Parse Querystring Parameters
+                            </h2>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>Extract and process the <strong><i>org_connection_id</i></strong> query string parameter in the URL.</p>
+                                <pre><code x-text="JSON.stringify(queryParams, null, 4)" class="language-json"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2>
+                                Step 2: Fetch Medical Records
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>Make a request to the Fasten Connect API, triggering the collection of the patient's medical records (identified using the <strong><i>org_connection_id</i></strong>)
+                                    <br/>
+                                    Note: You must use your API credentials to authenticate the request. Replace the placeholders with your actual credentials.
+                                    These credentials are available in your Fasten Health account dashboard.
+                                </p>
+                                <pre><code class="language-bash">
+curl -u 'public_test_6f5j7qj54rlyajv6u8r36z0iu5v9qjf87f77tzl3k6ezu':'private_test_9u2orj....sd02lk3)i03423' \
+-X POST \
+--data '{"org_connection_id":"<span x-text="queryParams['org_connection_id']"></span>"}' \
+https://api.connect.fastenhealth.com/v1/bridge/fhir/ehi-export
+
+                                    </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2>
+                                Step 3: Wait for Webhook Event
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>After Fasten collects and processes the medical records, we'll notify you via the webhook you configured in the Developer Portal:
+                                    <br/>
+                                    <code>https://en0iulj15w1e4u.x.pipedream.net/</code>
+                                    <br/>
+
+                                    In this example, you can view the webhook payloads by visiting the following link:
+                                    <a href="https://public.requestbin.com/r/en0iulj15w1e4u">https://public.requestbin.com/r/en0iulj15w1e4u</a>
+                                </p>
+                                <p>Webhook events will look something like this:</p>
+                                <pre><code class="language-json">
+{
+    "api_mode": "test",
+    "type": "patient.ehi_export_success",
+    "date": "2024-04-03T17:16:40Z",
+    "id": "1b37cf9b-702f-4fd1-bb00-d0fd8e6dbc89",
+    "data": {
+        "download_link": "https://api.connect.fastenhealth.com/v1/bridge/fhir/ehi-export/ffb14cd8bde66fa12351laf321/download/2024-04-03-098c09ef-887d-4aad-886c-d3ffd11750da.jsonl",
+        "task_id": "ffb14cd8bde66fa12351laf321",
+        "org_id": "d65008f6-ffb1-4cd8-b868-c2de66fa5155"
+    }
+}
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingFour">
+                            <h2>
+                                Step 4: Retrieve Medical Records
+                            </h2>
+                        </div>
+                        <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>Once you receive the webhook event, you can use the <code>download_link</code> to download the export. The export will be a JSONL file containing the patient’s medical records in FHIR format.:
+                                </p>
+
+                                <pre><code class="language-bash">
+curl -o patient_bulk_export.jsonl \
+-u 'public_test_6f5j7qj54rlyajv6u8r36z0iu5v9qjf87f77tzl3k6ezu':'private_test_9u2orj....sd02lk3)i03423 \
+--location \
+https://api.connect.fastenhealth.com/v1/bridge/fhir/ehi-export/ffb14cd8bde66fa12351laf321/download/2024-04-03-098c09ef-887d-4aad-886c-d3ffd11750da.jsonl
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="headingFive">
+                            <h2>
+                                Step 5: Import into your System
+                            </h2>
+                        </div>
+                        <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p>Finally, you can import the medical records into your system for further processing and analysis. The records are standard FHIR R4 resources</p>
+
+                                <pre><code class="language-json">
+{"id":"erXuFYUfucBZaryVksYEcMg3","extension":[{"url":"http://open.epic.com/FHIR/StructureDefinition/extension/legal-sex","valueCodeableConcept":{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.10.698084.130.657370.19999000","code":"female","display":"female"}]}},{"extension":[{"url":"ombCategory","valueCoding":{"system":"urn:oid:2.16.840.1.113883.6.238","code":"2131-1","display":"Other Race"}},{"url":"text","valueString":"Other"}],"url":"http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"},{"extension":[{"url":"text","valueString":"Unknown"}],"url":"http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"}],"identifier":[{"use":"usual","type":{"text":"EPIC"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.0","value":"E4007"},{"use":"usual","type":{"text":"EXTERNAL"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.698084","value":"Z6129"},{"use":"usual","type":{"text":"FHIR"},"system":"http://open.epic.com/FHIR/StructureDefinition/patient-dstu2-fhir-id","value":"TnOZ.elPXC6zcBNFMcFA7A5KZbYxo2.4T-LylRk4GoW4B"},{"use":"usual","type":{"text":"FHIR STU3"},"system":"http://open.epic.com/FHIR/StructureDefinition/patient-fhir-id","value":"erXuFYUfucBZaryVksYEcMg3"},{"use":"usual","type":{"text":"INTERNAL"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.698084","value":"     Z6129"},{"use":"usual","type":{"text":"EPI"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.14","value":"203713"},{"use":"usual","type":{"text":"MYCHARTLOGIN"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.878082.110","value":"FHIRCAMILA"},{"use":"usual","type":{"text":"WPRINTERNAL"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.878082","value":"736"}],"active":true,"name":[{"use":"official","text":"Camila Maria Lopez","family":"Lopez","given":["Camila","Maria"]},{"use":"usual","text":"Camila Maria Lopez","family":"Lopez","given":["Camila","Maria"]}],"telecom":[{"system":"phone","value":"469-555-5555","use":"home"},{"system":"phone","value":"469-888-8888","use":"work"},{"system":"email","value":"knixontestemail@epic.com","rank":1}],"gender":"female","birthDate":"1987-09-12","deceasedBoolean":false,"address":[{"use":"home","line":["3268 West Johnson St.","Apt 117"],"city":"GARLAND","district":"DALLAS","state":"TX","postalCode":"75043","country":"US","period":{"start":"2019-05-24"}},{"use":"old","line":["3268 West Johnson St.","Apt 117"],"city":"GARLAND","district":"DALLAS","state":"TX","postalCode":"75043","country":"US"}],"maritalStatus":{"text":"Married"},"communication":[{"language":{"coding":[{"system":"urn:ietf:bcp:47","code":"en","display":"English"}],"text":"English"},"preferred":true}],"generalPractitioner":[{"reference":"Practitioner/eM5CWtq15N0WJeuCet5bJlQ3","type":"Practitioner","display":"Physician"}],"managingOrganization":{"reference":"Organization/enRyWnSP963FYDpoks4NHOA3","display":"EHS Service Area"},"resourceType":"Patient"}
+{"resourceType":"AllergyIntolerance","id":"eARZpey6BWRZxRZkRpc8OFJ46j3QOFrduk77hYQKWRQnp6GRlpYc2I3BfUN6pz4Anz77ow8.GJh54fUVfm3O8Vw3","clinicalStatus":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical","version":"4.0.0","code":"active","display":"Active"}]},"verificationStatus":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/allergyintolerance-verification","version":"4.0.0","code":"unconfirmed","display":"Unconfirmed"}]},"code":{"coding":[{"system":"http://snomed.info/sct","code":"1631000175102","display":"Patient not asked"}],"text":"Not on File"},"patient":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"}}
+{"resourceType":"CareTeam","id":"elXzftb61zxJqvM4xV3jTzA3","status":"active","category":[{"coding":[{"system":"http://loinc.org","code":"LA28865-6","display":"Longitudinal care-coordination focused care team"}],"text":"Longitudinal care-coordination focused care team"}],"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"participant":[{"role":[{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.836982.1050","code":"9","display":"Family Medicine"},{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.698084.5655","code":"1","display":"General"}],"text":"Family Medicine"}],"member":{"reference":"Practitioner/eM5CWtq15N0WJeuCet5bJlQ3","type":"Practitioner","display":"Physician"}}]}
+{"resourceType":"Condition","id":"euDDjG6i1-OkhZii5APxOiw3","clinicalStatus":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/condition-clinical","version":"4.0.0","code":"active","display":"Active"}],"text":"Active"},"verificationStatus":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/condition-ver-status","version":"4.0.0","code":"confirmed","display":"Confirmed"}],"text":"Confirmed"},"category":[{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/condition-category","code":"problem-list-item","display":"Problem List Item"}],"text":"Problem List Item"}],"severity":{"text":"Medium"},"code":{"coding":[{"system":"http://hl7.org/fhir/sid/icd-10-cm","code":"E28.2","display":"Polycystic ovarian syndrome"},{"system":"http://snomed.info/sct","code":"69878008","display":"Polycystic Ovaries"}],"text":"Polycystic ovaries"},"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"onsetDateTime":"2005-09-20","recordedDate":"2019-05-28"}
+{"resourceType":"DiagnosticReport","id":"ebLG6RMUaZyb2xk2DuX.kd4g8mNRffn9ftcwqSmnhrwM3","identifier":[{"use":"official","type":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v2-0203","code":"PLAC","display":"Placer Identifier"}],"text":"Placer Identifier"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.798268","value":"1066905"}],"basedOn":[{"reference":"ServiceRequest/egf4KkhXmgeVWImXEEYH.CEE1ZgJG5SQy2vBX1HgvBCs3","type":"ServiceRequest"}],"status":"final","category":[{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30","code":"Lab"}],"text":"Lab"},{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v2-0074","code":"LAB","display":"Laboratory"}],"text":"Laboratory"}],"code":{"coding":[{"system":"http://loinc.org","code":"4548-4"},{"system":"urn:oid:2.16.840.1.113883.6.12","code":"83036","display":"PR GLYCOSYLATED HEMOGLOBIN TEST"},{"system":"urn:oid:2.16.840.1.113883.6.96","code":"43396009","display":"HEMOGLOBIN A1C"}],"text":"Hemoglobin A1c"},"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"encounter":{"reference":"Encounter/elMz2mwjsRvKnZiR.0ceTUg3","identifier":{"use":"usual","system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.698084.8","value":"27558"},"display":"Office Visit"},"effectiveDateTime":"2019-05-28T14:22:00Z","issued":"2019-05-28T14:22:00Z","performer":[{"reference":"Practitioner/eM5CWtq15N0WJeuCet5bJlQ3","type":"Practitioner","display":"Physician"}],"result":[{"reference":"Observation/eyPMWgv2u2RUfsV4p1lLKuUtqyPs2-QNi2zKvbTsFYtRByc6B.cSi1iVU5V2HOpX23","display":"Component (1): HEMOGLOBIN A1C, POC"}]}
+{"resourceType":"DiagnosticReport","id":"eeIUePPFhkOlGgtsbPko4a4tPlKY9045CYysh7Ryulnc3","identifier":[{"use":"official","type":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v2-0203","code":"PLAC","display":"Placer Identifier"}],"text":"Placer Identifier"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.798268","value":"1066912"},{"use":"official","type":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v2-0203","code":"FILL","display":"Filler Identifier"}],"text":"Filler Identifier"},"value":"161"}],"basedOn":[{"reference":"ServiceRequest/ePsXywWuaF47D-FPsxcnz3BOk1-JNF41RJJEMQu.2TCA3","type":"ServiceRequest"}],"status":"final","category":[{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30","code":"Imaging"}],"text":"Imaging"},{"coding":[{"system":"http://loinc.org","code":"LP29684-5","display":"Radiology"}],"text":"Radiology"}],"code":{"coding":[{"system":"http://loinc.org","code":"36643-5"},{"system":"urn:oid:2.16.840.1.113883.6.12","code":"71020","display":"HC XR CHEST 2V"},{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.52000","code":"7000029"},{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.72","code":"IMG36"},{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.155","code":"RPID2503"}],"text":"X-ray Chest 2 Views"},"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"encounter":{"reference":"Encounter/eoIRZgvu9RhrwOzDlZkRbSg3","identifier":{"use":"usual","system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.698084.8","value":"29541"},"display":"Hospital Outpatient Visit"},"effectiveDateTime":"2023-06-02T20:43:46Z","issued":"2023-07-25T13:27:19Z","performer":[{"reference":"Practitioner/eM5CWtq15N0WJeuCet5bJlQ3","type":"Practitioner","display":"Physician"},{"reference":"Practitioner/elpRiy0AYgjhdjAhTBJ3Aiw3","type":"Practitioner","display":"Np"},{"reference":"Organization/etOhDRFmHqAJ3CBmvHCeF9VYgSiH5bYCNkDSOho2TXb43","type":"Organization","display":"IMAGING"}],"resultsInterpreter":[{"reference":"Practitioner/eM5CWtq15N0WJeuCet5bJlQ3","type":"Practitioner","display":"Physician"}],"result":[{"reference":"Observation/eWQ91GjryHtrlYhSNxK1L7mI-fgFwPAedom.YQ4JDeQk3","display":"Narrative"},{"reference":"Observation/eWQ91GjryHtrlYhSNxK1L7hOQbiABlro0a6oo2bIh68I3","display":"Impression"}],"conclusionCode":[{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.103","code":"786.50","display":"Ischemic chest pain (CMS/HCC)"}],"text":"Ischemic chest pain"}],"presentedForm":[{"contentType":"text/html","url":"Binary/eatrFYJ-c5OxFaXGGKhRmt-kbn-1xHl8SNrcCB4fHVps3","title":"Narrative"},{"contentType":"text/html","url":"Binary/eatrFYJ-c5OxFaXGGKhRmtxnlc-Z0vWhRnWj621bo99g3","title":"Impression"}]}
+{"resourceType":"DiagnosticReport","id":"ejRFFAyoWd-DvE0lHi4UEUVA9qTH9PxfCLhEetlq04Ck3","identifier":[{"use":"official","type":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v2-0203","code":"PLAC","display":"Placer Identifier"}],"text":"Placer Identifier"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.798268","value":"1066915"},{"use":"official","type":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v2-0203","code":"FILL","display":"Filler Identifier"}],"text":"Filler Identifier"},"value":"162"}],"basedOn":[{"reference":"ServiceRequest/e6t1HtRj0Za8M9Y0u5nU2tu3idJ7P66B2HzlMtddZ6Wc3","type":"ServiceRequest"}],"status":"final","category":[{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30","code":"Echo"}],"text":"Echocardiography"},{"coding":[{"system":"http://loinc.org","code":"LP29708-2","display":"Cardiology"}],"text":"Cardiology"}],"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.12","code":"93306","display":"HC TRANSTHORACIC ECHO"}],"text":"Transthoracic Echo (TTE) Complete"},"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"encounter":{"reference":"Encounter/ej567ARSFdaF4ooZVunIlIg3","identifier":{"use":"usual","system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.698084.8","value":"29542"},"display":"Hospital Outpatient Visit"},"effectiveDateTime":"2023-06-02T20:50:25Z","issued":"2023-07-25T13:26:44Z","performer":[{"reference":"Practitioner/eM5CWtq15N0WJeuCet5bJlQ3","type":"Practitioner","display":"Physician"},{"reference":"Practitioner/elpRiy0AYgjhdjAhTBJ3Aiw3","type":"Practitioner","display":"Np"},{"reference":"Organization/eVUDU8oWh9.KM7oI8Mu9jlqn1C3d5ozeHAXDHuaPYsvU3","type":"Organization","display":"CPACS"}],"resultsInterpreter":[{"reference":"Practitioner/eM5CWtq15N0WJeuCet5bJlQ3","type":"Practitioner","display":"Physician"}],"result":[{"reference":"Observation/epvZIWrCStn-QxWdd6yDL2rsODx.M3VAMdHGGYcFbGkQ3","display":"Narrative"},{"reference":"Observation/eUnZeZkXn.qk2e15Fa5GSJrQuuYKhh55JdwnpB0Cppeo3","display":"Myocardial Finding: Left Ventricle"}],"conclusionCode":[{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.103","code":"786.50","display":"Ischemic chest pain (CMS/HCC)"}],"text":"Ischemic chest pain"}],"presentedForm":[{"contentType":"text/html","url":"Binary/ey9R3HQvzT5D6lNvbJeLdyTF10pM-Yzpp1nsL-VLVkJc3","title":"Narrative"}]}
+{"resourceType":"DiagnosticReport","id":"e1xW6IyYA20h9CHX4rXDK8wRZibvNskG.0jb.xlYR.OI3","identifier":[{"use":"official","type":{"coding":[{"system":"http://terminology.hl7.org/CodeSystem/v2-0203","code":"PLAC","display":"Placer Identifier"}],"text":"Placer Identifier"},"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.798268","value":"1159966"}],"basedOn":[{"reference":"ServiceRequest/enf3AGjDevbeKPagusE3V1s5OQotZY-b9J5pspEt6PfU3","type":"ServiceRequest"}],"status":"final","category":[{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.10.798268.30","code":"Path,Cyt"}],"text":"Pathology and Cytology"},{"coding":[{"system":"http://loinc.org","code":"LP7839-6","display":"Pathology"}],"text":"Pathology"}],"code":{"coding":[{"system":"urn:oid:2.16.840.1.113883.6.12","code":"88305","display":"PR SURG PATH,LEVEL IV"}],"text":"Specimen to pathology"},"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"encounter":{"reference":"Encounter/eMT95RPaM-HxLc3NeIA5qlQ3","identifier":{"use":"usual","system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.698084.8","value":"29544"},"display":"Office Visit"},"effectiveDateTime":"2023-06-02T21:02:00Z","issued":"2023-06-02T21:02:00Z","performer":[{"reference":"Practitioner/e2qocqJm-DdjHLS0Not4qjA3","type":"Practitioner","display":"Historical"}]}
+{"resourceType":"DocumentReference","id":"eV4JTdDutjribHOr3fvHRLg3","identifier":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.727879","value":"197109"},{"system":"urn:oid:1.2.840.114350.1.72.3.15","value":"1.2.840.114350.1.13.0.1.7.2.727879_197109"}],"status":"current","docStatus":"final","type":{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.737880.5010","code":"2","display":"Consults"},{"system":"urn:oid:1.2.840.114350.1.72.727879.69848980","code":"2","display":"Consults"},{"system":"http://loinc.org","code":"11488-4","display":"Consult note","userSelected":true}],"text":"Consults"},"category":[{"coding":[{"system":"http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category","code":"clinical-note","display":"Clinical Note"}],"text":"Clinical Note"}],"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"date":"2024-04-02T03:38:26Z","author":[{"reference":"Practitioner/evNp-KhYwOOqAZn1pZ2enuA3","type":"Practitioner","display":"User I"}],"authenticator":{"extension":[{"valueDateTime":"2024-04-02T03:38:26Z","url":"http://open.epic.com/FHIR/StructureDefinition/extension/clinical-note-authentication-instant"}],"reference":"Practitioner/evNp-KhYwOOqAZn1pZ2enuA3","type":"Practitioner","display":"User I"},"custodian":{"identifier":{"system":"urn:ietf:rfc:3986","value":"urn:oid:fhir"},"display":"Epic USCDI on FHIR"},"content":[{"attachment":{"contentType":"text/html","url":"Binary/eLiknwqtht-1ZDlP5v6OxIw3"},"format":{"system":"http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem","code":"urn:ihe:iti:xds:2017:mimeTypeSufficient","display":"mimeType Sufficient"}},{"attachment":{"contentType":"text/rtf","url":"Binary/fxIV7C7wb0YFGdsm-OCrWKregjm5pRRVMeFdAtEiGhpg4"},"format":{"system":"http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem","code":"urn:ihe:iti:xds:2017:mimeTypeSufficient","display":"mimeType Sufficient"}}],"context":{"extension":[{"valueCodeableConcept":{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.836982.1040","code":"3","display":"Registered Nurse"}],"text":"Registered Nurse"},"url":"http://open.epic.com/FHIR/StructureDefinition/extension/clinical-note-author-provider-type"}],"encounter":[{"reference":"Encounter/eGmO0h.1.UQQrExl4bfM7OQ3","identifier":{"use":"usual","system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.698084.8","value":"29545"},"display":"Surgery"}],"period":{"start":"2024-04-02T03:38:26Z"}}}
+{"resourceType":"DocumentReference","id":"eB-wbBhG8IxiSYBED2IXy9A3","identifier":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.727879","value":"197108"},{"system":"urn:oid:1.2.840.114350.1.72.3.15","value":"1.2.840.114350.1.13.0.1.7.2.727879_197108"}],"status":"current","docStatus":"final","type":{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.737880.5010","code":"2","display":"Consults"},{"system":"urn:oid:1.2.840.114350.1.72.727879.69848980","code":"2","display":"Consults"},{"system":"http://loinc.org","code":"11488-4","display":"Consult note","userSelected":true}],"text":"Consults"},"category":[{"coding":[{"system":"http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category","code":"clinical-note","display":"Clinical Note"}],"text":"Clinical Note"}],"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"date":"2024-04-01T21:53:46Z","author":[{"reference":"Practitioner/evNp-KhYwOOqAZn1pZ2enuA3","type":"Practitioner","display":"User I"}],"authenticator":{"extension":[{"valueDateTime":"2024-04-01T21:53:46Z","url":"http://open.epic.com/FHIR/StructureDefinition/extension/clinical-note-authentication-instant"}],"reference":"Practitioner/evNp-KhYwOOqAZn1pZ2enuA3","type":"Practitioner","display":"User I"},"custodian":{"identifier":{"system":"urn:ietf:rfc:3986","value":"urn:oid:fhir"},"display":"Epic USCDI on FHIR"},"content":[{"attachment":{"contentType":"text/html","url":"Binary/eG60IKn-tz5CGuu7gq29wPw3"},"format":{"system":"http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem","code":"urn:ihe:iti:xds:2017:mimeTypeSufficient","display":"mimeType Sufficient"}},{"attachment":{"contentType":"text/rtf","url":"Binary/fYM9tLFlUNEd3JxTF4BznOhp3WX6P6Vf3V4md8VW4sPI4"},"format":{"system":"http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem","code":"urn:ihe:iti:xds:2017:mimeTypeSufficient","display":"mimeType Sufficient"}}],"context":{"extension":[{"valueCodeableConcept":{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.836982.1040","code":"3","display":"Registered Nurse"}],"text":"Registered Nurse"},"url":"http://open.epic.com/FHIR/StructureDefinition/extension/clinical-note-author-provider-type"}],"encounter":[{"reference":"Encounter/eGmO0h.1.UQQrExl4bfM7OQ3","identifier":{"use":"usual","system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.698084.8","value":"29545"},"display":"Surgery"}],"period":{"start":"2024-04-01T21:53:46Z"}}}
+{"resourceType":"DocumentReference","id":"eNreR3hAkvySSHIcq2Lrxlw3","identifier":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.2.727879","value":"196763"},{"system":"urn:oid:1.2.840.114350.1.72.3.15","value":"1.2.840.114350.1.13.0.1.7.2.727879_196763"}],"status":"current","docStatus":"final","type":{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.737880.5010","code":"1","display":"Progress Notes"},{"system":"urn:oid:1.2.840.114350.1.72.727879.69848980","code":"1","display":"Progress Notes"},{"system":"http://loinc.org","code":"11506-3","display":"Provider-unspecified Progress note","userSelected":true}],"text":"Progress Notes"},"category":[{"coding":[{"system":"http://hl7.org/fhir/us/core/CodeSystem/us-core-documentreference-category","code":"clinical-note","display":"Clinical Note"}],"text":"Clinical Note"}],"subject":{"reference":"Patient/erXuFYUfucBZaryVksYEcMg3","display":"Lopez, Camila Maria"},"date":"2023-05-21T16:55:00Z","author":[{"reference":"Practitioner/eUXiD4IyBLJFoR2VHOjfTdg3","type":"Practitioner","display":"Physician"}],"authenticator":{"extension":[{"valueDateTime":"2023-05-21T16:57:01Z","url":"http://open.epic.com/FHIR/StructureDefinition/extension/clinical-note-authentication-instant"}],"reference":"Practitioner/eUXiD4IyBLJFoR2VHOjfTdg3","type":"Practitioner","display":"Physician"},"custodian":{"identifier":{"system":"urn:ietf:rfc:3986","value":"urn:oid:fhir"},"display":"Epic USCDI on FHIR"},"content":[{"attachment":{"contentType":"text/html","url":"Binary/eXGCC0U1rMIkqT43GlAEfsA3"},"format":{"system":"http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem","code":"urn:ihe:iti:xds:2017:mimeTypeSufficient","display":"mimeType Sufficient"}},{"attachment":{"contentType":"text/rtf","url":"Binary/ftlnC8mfyjUVrXEpeEsj12f1.H.Tu5gtgXv1gF4e3F4Y4"},"format":{"system":"http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem","code":"urn:ihe:iti:xds:2017:mimeTypeSufficient","display":"mimeType Sufficient"}}],"context":{"extension":[{"valueCodeableConcept":{"coding":[{"system":"urn:oid:1.2.840.114350.1.13.0.1.7.4.836982.1040","code":"1","display":"Physician"},{"system":"urn:oid:2.16.840.1.113883.11.19465","code":"207Q00000X","display":"Family Medicine Physician"}],"text":"Physician"},"url":"http://open.epic.com/FHIR/StructureDefinition/extension/clinical-note-author-provider-type"}],"encounter":[{"reference":"Encounter/exfbAtPCSLnf8s.193aMUnQ3","identifier":{"use":"usual","system":"urn:oid:1.2.840.114350.1.13.0.1.7.3.698084.8","value":"29539"},"display":"Office Visit"}],"period":{"start":"2023-05-21T16:53:00Z"}}}
+...
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module">
+    import alpinejs from 'https://cdn.skypack.dev/alpinejs@v3.13.4';
+    alpinejs.data('pageRedirectData', pageRedirectData);
+    alpinejs.start();
+
+    import hljs from "https://cdn.skypack.dev/highlight.js";
+    hljs.highlightAll();
+
+    export function pageRedirectData(){
+        return {
+            showBackendCode: false,
+            queryParams: Object.fromEntries(new URLSearchParams(window.location.search)),
+
+            redirectInit(){
+            }
+
+        }
+    }
+
+</script>
+</body>
+</html>
