@@ -13,10 +13,26 @@
 
 
         <script type="application/javascript">
-            window.addEventListener('DOMContentLoaded',function () {
-                //your code here
-                // document.querySelector('fasten-stitch').show();
-            });
+
+
+            const els = document.getElementsByTagName("fasten-stitch");
+            for (const el of els) {
+                listenOnFasten(el)
+            }
+
+
+            function listenOnFasten(el) {
+                console.log("listening on", el)
+                el.addEventListener('orgConnectionCallback', (event) => {
+                    if (event.detail === null) {
+                        // this happens, for some reason, when the document is loaded
+                        return;
+                    }
+
+                    console.warn("FOUND EVENT TRIGGERED", event)
+                    el.hide();
+                });
+            }
         </script>
 
     </body>
