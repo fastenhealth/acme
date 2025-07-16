@@ -176,6 +176,20 @@
     </button>
 
     <button
+            @click="toggleEventTypes"
+            class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100"
+    >
+        <!-- HeroIcon - cube-->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+        </svg>
+
+
+
+        <small class="text-center text-xs font-medium"> Event Types </small>
+    </button>
+
+    <button
             @click="toggleTefcaMode"
             :class="{ 'bg-indigo-50 text-indigo-600': tefcaMode, 'text-gray-700 hover:bg-gray-100': !tefcaMode }"
             class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100"
@@ -226,6 +240,7 @@
             :tefca-mode="tefcaMode"
             :static-backdrop="staticBackdrop"
             :reconnect-org-connection-id="reconnectOrgConnectionId"
+            :event-types="eventTypes"
 
     ></fasten-stitch-element>
 
@@ -295,6 +310,7 @@
                 staticBackdrop: false,
                 tefcaMode: false,
                 reconnectOrgConnectionId: "",
+                eventTypes: "",
 
                 toggleStaticBackdrop() {
                     this.staticBackdrop = !this.staticBackdrop;
@@ -307,6 +323,9 @@
                 },
                 toggleReconnectOrgConnectionId() {
                     this.reconnectOrgConnectionId = this.reconnectOrgConnectionId ? "" : "c2f0358c-f330-49ed-b32f-8018296873a2";
+                },
+                toggleEventTypes() {
+                    this.eventTypes = this.eventTypes ? "" : "search.query";
                 },
                 toggleShow() {
                     document.querySelector('fasten-stitch-element').show();
