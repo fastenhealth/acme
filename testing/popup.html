@@ -5,8 +5,26 @@
 </HEAD>
 <BODY BGCOLOR="#FF0000">
 
+<script type="text/javascript">
+    //listen to events from the child window
+    window.addEventListener("message", (event) => {
+        console.log("received message from popup window:", event.data);
+        if (event.data && event.data.success) {
+            // alert(event.data.message);
+            const logs = document.getElementById("postmessage-logs");
+            const logItem = document.createElement("li");
+            logItem.textContent = `Received message: ${event.data.message}`;
+            logs.appendChild(logItem);
+        }
+    });
+</script>
+
 <div style="display: flex; justify-content: center; align-items: center; height: 700px; border: 3px solid green;">
     <button onclick="window.open('https://www.acmelabsdemo.com/testing/destination.html', '_blank')">Open Popup</button>
+
+    <p>Click the button to open a popup window. The popup will send a message back to this window.</p>
+    <ul id="postmessage-logs">
+    </ul>
 </div>
 
 </BODY>
