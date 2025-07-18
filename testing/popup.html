@@ -9,11 +9,12 @@
     //listen to events from the child window
     window.addEventListener("message", (event) => {
         console.log("received message from popup window:", event.data);
-        if (event.data && event.data.success) {
+        const eventDataObject = JSON.parse(event.data);
+        if (event.data && eventDataObject.success) {
             // alert(event.data.message);
             const logs = document.getElementById("postmessage-logs");
             const logItem = document.createElement("li");
-            logItem.textContent = `Received message: ${event.data.message}`;
+            logItem.textContent = `Received message: ${eventDataObject.message}`;
             logs.appendChild(logItem);
         }
         //always send back an acknowledgment to the popup
