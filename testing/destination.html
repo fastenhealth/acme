@@ -6,6 +6,18 @@
 <BODY BGCOLOR="#0000FF" LINK="#0000FF">
 <div style="display: flex; justify-content: center; align-items: center; height: 700px; border: 3px solid green;">
     <script type="text/javascript">
+        const postMessageInstantPayload = {
+            "success": true,
+            "message": "This is a instant message from the popup window to the parent (opening) window.",
+        }
+
+        console.log("sending INSTANT success message to opening window...", JSON.stringify(postMessageInstantPayload))
+        window.addEventListener("message", (event) => {
+            console.log("received close:true message ...", event)
+            window.close()
+        })
+        window.opener.postMessage(JSON.stringify(postMessageInstantPayload), "*")
+
         function sendPostMessage() {
             const postMessagePayload = {
                 "success": true,
