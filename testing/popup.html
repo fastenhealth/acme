@@ -16,6 +16,10 @@
             logItem.textContent = `Received message: ${event.data.message}`;
             logs.appendChild(logItem);
         }
+        //always send back an acknowledgment to the popup
+        event.source.postMessage(JSON.stringify({ success: true, close: true }), event.origin);
+
+
     });
 </script>
 
