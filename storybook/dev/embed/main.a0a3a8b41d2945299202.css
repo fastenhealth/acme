@@ -1552,8 +1552,20 @@ video {
 .focus\:ring-opacity-20:focus {
   --tw-ring-opacity: 0.2;
 }
+.disabled\:bg-gray-400:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity, 1));
+}
+.disabled\:text-gray-600:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity, 1));
+}
 .disabled\:opacity-50:disabled {
   opacity: 0.5;
+}
+.disabled\:hover\:bg-gray-400:hover:disabled {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity, 1));
 }
 @media (min-width: 768px) {
 
