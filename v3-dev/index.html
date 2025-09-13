@@ -280,8 +280,6 @@
                 console.log(eventPayload.event_type, connections);
 
                 connections = eventPayload.data;
-            } else if(eventPayload.event_type == 'widget.close') {
-                console.log(eventPayload.event_type, connections);
                 if(connections && connections.length > 0){
                     var firstConnection = connections[0];
                     //redirect to the redirect.html file with these querystring parameters.
