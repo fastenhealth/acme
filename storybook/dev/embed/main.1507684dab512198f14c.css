@@ -548,6 +548,9 @@ video {
 .sticky {
   position: sticky;
 }
+.bottom-0 {
+  bottom: 0px;
+}
 .left-0 {
   left: 0px;
 }
@@ -562,6 +565,9 @@ video {
 }
 .z-10 {
   z-index: 10;
+}
+.z-20 {
+  z-index: 20;
 }
 .z-50 {
   z-index: 50;
@@ -707,9 +713,6 @@ video {
 .w-8 {
   width: 2rem;
 }
-.w-\[120px\] {
-  width: 120px;
-}
 .w-full {
   width: 100%;
 }
@@ -788,6 +791,9 @@ video {
 }
 .gap-4 {
   gap: 1rem;
+}
+.gap-6 {
+  gap: 1.5rem;
 }
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1003,8 +1009,8 @@ video {
 .pb-6 {
   padding-bottom: 1.5rem;
 }
-.pt-4 {
-  padding-top: 1rem;
+.pr-1 {
+  padding-right: 0.25rem;
 }
 .pt-6 {
   padding-top: 1.5rem;
@@ -1159,16 +1165,6 @@ video {
   transition-property: box-shadow;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.scrollbar-hidden {
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
 }
 
 .az-logo {
@@ -1570,6 +1566,24 @@ video {
 }
 .disabled\:opacity-50:disabled {
   opacity: 0.5;
+}
+@media (min-width: 640px) {
+
+  .sm\:w-\[120px\] {
+    width: 120px;
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:justify-between {
+    justify-content: space-between;
+  }
 }
 @media (min-width: 768px) {
 
