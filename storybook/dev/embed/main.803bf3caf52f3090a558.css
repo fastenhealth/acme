@@ -662,6 +662,9 @@ video {
 .h-full {
   height: 100%;
 }
+.h-screen {
+  height: 100vh;
+}
 .max-h-12 {
   max-height: 3rem;
 }
@@ -835,6 +838,9 @@ video {
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .overflow-scroll {
   overflow: scroll;
 }
@@ -1005,6 +1011,9 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 .pb-6 {
   padding-bottom: 1.5rem;
