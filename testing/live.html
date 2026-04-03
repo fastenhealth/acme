@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.fastenhealth.com/connect/v1/fasten-stitch.css"></head>
+        <script src="https://cdn.fastenhealth.com/connect/v1/fasten-stitch.js" type="module"></script>
+    </head>
+    <body>
+        <fasten-stitch public-id="public_live_luezin9lp65gprse02h0jox7dmkhi5406kujj4fjsar1b" external-id="user-opaque-id-3018r53"></fasten-stitch>
+        
+
+        <script type="application/javascript">
+
+
+            const els = document.getElementsByTagName("fasten-stitch");
+            for (const el of els) {
+                listenOnFasten(el)
+            }
+
+
+            function listenOnFasten(el) {
+                console.log("listening on", el)
+                el.addEventListener('orgConnectionCallback', (event) => {
+                    if (event.detail === null) {
+                        // this happens, for some reason, when the document is loaded
+                        return;
+                    }
+
+                    console.warn("FOUND EVENT TRIGGERED", event)
+                    el.hide();
+                });
+            }
+        </script>
+
+    </body>
+</html>
