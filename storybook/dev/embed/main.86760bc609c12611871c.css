@@ -908,6 +908,9 @@ video {
 .whitespace-pre-line {
   white-space: pre-line;
 }
+.break-words {
+  overflow-wrap: break-word;
+}
 .rounded {
   border-radius: 0.25rem;
 }
@@ -1665,6 +1668,10 @@ video {
 .hover\:bg-red-900:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(127 29 29 / var(--tw-bg-opacity, 1));
+}
+.hover\:text-\[\#4936E8\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(73 54 232 / var(--tw-text-opacity, 1));
 }
 .hover\:text-\[\#5B47FB\]:hover {
   --tw-text-opacity: 1;
