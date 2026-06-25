@@ -373,6 +373,20 @@
             </button>
 
             <button
+                    @click="toggleEmail"
+                    :class="{ 'bg-indigo-50 text-indigo-600': !!email, 'text-gray-700 hover:bg-gray-100': !email }"
+                    class="flex min-h-[40px] w-full flex-row items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition"
+            >
+                <span class="flex items-center gap-2">
+                    <!-- HeroIcon - envelope -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 shrink-0">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0-8.511 5.446a2.25 2.25 0 0 1-2.478 0L2.25 6.75" />
+                    </svg>
+                    Email
+                </span>
+            </button>
+
+            <button
                     @click="toggleSortByLocation"
                     :class="{ 'bg-indigo-50 text-indigo-600': sortByLocation, 'text-gray-700 hover:bg-gray-100': !sortByLocation }"
                     class="flex min-h-[40px] w-full flex-row items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition"
@@ -488,6 +502,7 @@
             :search-sort-by="sortBy"
             :search-sort-by-opts="sortByOpts"
             :event-types="eventTypes"
+            :email="email"
 
     ></fasten-stitch-element>
 
@@ -630,6 +645,7 @@
                 sortBy: '',
                 sortByOpts: '',
                 eventTypes: "",
+                email: null,
                 controlSidebarOpen: false,
 
                 toggleStaticBackdrop() {
@@ -665,6 +681,9 @@
                 },
                 toggleEventTypes() {
                     this.eventTypes = this.eventTypes ? "" : "search.query";
+                },
+                toggleEmail() {
+                    this.email = this.email ? null : "patient-email@example.com";
                 },
                 toggleShow() {
                     document.querySelector('fasten-stitch-element').show();

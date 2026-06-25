@@ -203,6 +203,19 @@
         </button>
 
         <button
+                @click="toggleEmail"
+                :class="{ 'bg-indigo-50 text-indigo-600': !!email, 'text-gray-700 hover:bg-gray-100': !email }"
+                class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5"
+        >
+            <!-- HeroIcon - envelope -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0-8.511 5.446a2.25 2.25 0 0 1-2.478 0L2.25 6.75" />
+            </svg>
+
+            <small class="text-center text-xs font-medium"> Email </small>
+        </button>
+
+        <button
                 @click="toggleSortByLocation"
                 :class="{ 'bg-indigo-50 text-indigo-600': sortByLocation, 'text-gray-700 hover:bg-gray-100': !sortByLocation }"
                 class="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-700 hover:bg-gray-100"
@@ -301,6 +314,7 @@
                 :search-sort-by="sortBy"
                 :search-sort-by-opts="sortByOpts"
                 :event-types="eventTypes"
+                :email="email"
 
         ></fasten-stitch-element>
     </div>
@@ -367,6 +381,7 @@
                 sortBy: '',
                 sortByOpts: '',
                 eventTypes: "",
+                email: null,
 
                 toggleStaticBackdrop() {
                     this.staticBackdrop = !this.staticBackdrop;
@@ -401,6 +416,9 @@
                 },
                 toggleEventTypes() {
                     this.eventTypes = this.eventTypes ? "" : "search.query";
+                },
+                toggleEmail() {
+                    this.email = this.email ? null : "patient-email@example.com";
                 },
                 toggleShow() {
                     document.querySelector('fasten-stitch-element').show();
