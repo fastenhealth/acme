@@ -680,7 +680,7 @@
                     {
                         number: 1,
                         kicker: "Redirect callback",
-                        title: "Receive the patient redirect.",
+                        title: "Extract Connection Metadata",
                         summary: "Fasten returns the organization connection details to the redirect URL configured for your application.",
                         filename: "redirect-query.json",
                         language: "JSON",
@@ -696,7 +696,7 @@
                     {
                         number: 2,
                         kicker: "EHI export",
-                        title: "Trigger medical record collection.",
+                        title: "Fetch Medical Records",
                         summary: "Use the connection ID in an authenticated server-side request to start a Fasten EHI export.",
                         filename: "terminal",
                         language: "cURL",
@@ -712,7 +712,7 @@
                     {
                         number: 3,
                         kicker: "Webhook",
-                        title: "Handle the completion event.",
+                        title: "Wait for Webhook Event ",
                         summary: "Fasten notifies your webhook after the export is ready and includes a secure download link.",
                         filename: "patient.ehi_export_success.json",
                         language: "JSON",
@@ -728,7 +728,7 @@
                     {
                         number: 4,
                         kicker: "Bulk download",
-                        title: "Retrieve the completed JSONL export.",
+                        title: "Retrieve Medical Records",
                         summary: "Download the export from the webhook-provided URL using the same server-side API credentials.",
                         filename: "terminal",
                         language: "cURL",
@@ -744,7 +744,7 @@
                     {
                         number: 5,
                         kicker: "FHIR import",
-                        title: "Import records into your system.",
+                        title: "Import into your System",
                         summary: "Process the JSONL file line by line and route each standard FHIR R4 resource into your application.",
                         filename: "patient_bulk_export.jsonl",
                         language: "JSONL",

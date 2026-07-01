@@ -590,6 +590,27 @@
             color: var(--foo);
         }
 
+        .demo-account-link {
+            width: max-content;
+            margin: 11px 0 0 auto;
+            padding: 3px 0;
+            display: block;
+            border: 0;
+            border-bottom: 1px solid #cfc5dc;
+            background: transparent;
+            color: #746881;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: lowercase;
+            transition: color .2s ease, border-color .2s ease;
+        }
+
+        .demo-account-link:hover {
+            color: var(--foo);
+            border-color: var(--foo);
+        }
+
         .success-wrap {
             min-height: 100%;
             display: grid;
@@ -1471,7 +1492,7 @@
                             </span>
                             AcmeLabs
                         </div>
-                        <span class="study-id">Study FL-2048 · Phase III</span>
+                        <span class="study-id">Study Enrollment · FL-2048 · Phase III</span>
                     </header>
 
                     <div class="trial-main" x-ref="trialMain">
@@ -1479,7 +1500,7 @@
                             <template x-if="step === 1">
                                 <section aria-labelledby="step-one-title">
                                     <p class="eyebrow">New research opportunity</p>
-                                    <h2 class="step-title" id="step-one-title">A better way to see if a study fits you.</h2>
+                                    <h2 class="step-title" id="step-one-title">Is HeartForward right for you?</h2>
                                     <p class="step-lede">Answer a few questions and securely connect your health records. Our research team will review your match—no faxing, phone tag, or paperwork required.</p>
 
                                     <article class="study-card">
@@ -1501,7 +1522,7 @@
 
                             <template x-if="step === 2">
                                 <section aria-labelledby="step-two-title">
-                                    <p class="eyebrow">About you</p>
+                                    <p class="eyebrow">Demographics</p>
                                     <h2 class="step-title" id="step-two-title">Let’s start with the basics.</h2>
                                     <p class="step-lede">This helps AcmeLabs identify nearby study sites and confirm that the study is appropriate for your age group.</p>
 
@@ -1536,7 +1557,7 @@
 
                             <template x-if="step === 3">
                                 <section aria-labelledby="step-three-title">
-                                    <p class="eyebrow">Quick health check</p>
+                                    <p class="eyebrow">Conditions & Medications</p>
                                     <h2 class="step-title" id="step-three-title">A few questions about your heart health.</h2>
                                     <p class="step-lede">Your answers provide a quick preliminary screen. The research team will confirm eligibility using your authorized medical records.</p>
 
@@ -1613,6 +1634,10 @@
                                                     Patient-authorized
                                                 </span>
                                             </div>
+
+                                            <button class="demo-account-link" type="button" @click="openDemoWidget()">
+                                                try with demo account
+                                            </button>
                                         </div>
                                     </div>
                                 </section>
@@ -1902,7 +1927,7 @@
                 settingsOpen: false,
                 widgetKey: 0,
                 widgetConfig: {
-                    mode: "test",
+                    mode: "live",
                     prefillSearch: false,
                     searchQuery: "Epic",
                     locationSort: false,
@@ -2020,6 +2045,18 @@
                     if (this.widgetConfig.mode === mode) return;
                     this.widgetConfig.mode = mode;
                     this.refreshWidget();
+                },
+                openDemoWidget() {
+                    if (this.widgetConfig.mode !== "test") {
+                        this.widgetConfig.mode = "test";
+                        this.refreshWidget();
+                    }
+
+                    this.$nextTick(async () => {
+                        await window.customElements.whenDefined("fasten-stitch-element");
+                        const widget = this.$root.querySelector("fasten-stitch-element");
+                        widget?.show();
+                    });
                 },
                 handleTefcaChange() {
                     if (!this.widgetConfig.tefcaMode) {
