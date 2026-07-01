@@ -666,6 +666,34 @@
             font-size: 10px;
         }
 
+        .backend-link {
+            margin: 17px auto 0;
+            padding: 7px 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 0;
+            border-bottom: 1px solid #cfc5dc;
+            background: transparent;
+            color: #746881;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color .2s ease, border-color .2s ease, gap .2s ease;
+        }
+
+        .backend-link:hover {
+            gap: 10px;
+            color: var(--foo);
+            border-color: var(--foo);
+        }
+
+        .backend-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
         .wizard-nav {
             flex: 0 0 64px;
             display: grid;
@@ -1559,7 +1587,7 @@
 
                                             <template x-for="widgetInstance in [widgetKey]" :key="widgetInstance">
                                                 <fasten-stitch-element
-                                                    external-id="foolabs-demo-participant"
+                                                    external-id="acmelabs-demo-participant"
                                                     :public-id="widgetPublicId"
                                                     show-splash="false"
                                                     :email="participant.email"
@@ -1612,6 +1640,12 @@
                                                 <span>A research coordinator may ask a few follow-up questions.</span>
                                             </div>
                                         </div>
+                                        <button class="backend-link" type="button" @click="redirectToBackend()">
+                                            View the backend implementation
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                                <path d="M5 12h14M13 6l6 6-6 6"/>
+                                            </svg>
+                                        </button>
                                     </div>
                                 </section>
                             </template>
@@ -1866,6 +1900,7 @@
             return {
                 step: 1,
                 connected: false,
+                connections: [],
                 settingsOpen: false,
                 widgetKey: 0,
                 widgetConfig: {
@@ -2010,6 +2045,7 @@
 
                         if (payload?.event_type === "widget.complete") {
                             this.connected = true;
+                            this.connections = Array.isArray(payload.data) ? payload.data : [];
                             this.go(5);
                         }
                     } catch (error) {
@@ -2031,7 +2067,29 @@
                 },
                 restart() {
                     this.connected = false;
+                    this.connections = [];
                     this.go(1);
+                },
+                redirectToBackend() {
+                    const connection = this.connections[0] || {
+                        org_connection_id: this.isLive
+                            ? "live-org-connection-id-placeholder"
+                            : "test-org-connection-id-placeholder",
+                        catalog_brand_id: "acmelabs-demo-brand",
+                        catalog_portal_id: "acmelabs-demo-portal",
+                        catalog_endpoint_id: "acmelabs-demo-endpoint",
+                        platform_type: "web"
+                    };
+                    const redirectUrl = new URL("redirect.html", window.location.href);
+
+                    Object.entries(connection).forEach(([key, value]) => {
+                        if (value === null || value === undefined || typeof value === "object") return;
+                        redirectUrl.searchParams.set(key, String(value));
+                    });
+
+                    redirectUrl.searchParams.set("api_mode", this.widgetConfig.mode);
+                    redirectUrl.searchParams.set("external_id", "acmelabs-demo-participant");
+                    window.location.href = redirectUrl.toString();
                 }
             };
         }

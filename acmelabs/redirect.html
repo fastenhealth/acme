@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AcmeLabs backend implementation walkthrough for Fasten Connect.">
+    <title>AcmeLabs Backend Workflow · Fasten Connect</title>
+    <link rel="icon" type="image/png" href="./fasten-logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700&amp;display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #211a2d;
+            --muted: #706a7a;
+            --line: #e5dfea;
+            --paper: #f6f3f9;
+            --white: #ffffff;
+            --purple: #6746d6;
+            --purple-dark: #291a47;
+            --purple-light: #eee8ff;
+            --lime: #ddf27a;
+            --coral: #ff8c68;
+            --code: #1d1728;
+            --shadow: 0 28px 70px rgba(49, 32, 80, .16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-width: 320px;
+            background: var(--paper);
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 13% 78%, rgba(180, 154, 255, .22), transparent 24rem),
+                var(--paper);
+            font-family: "DM Sans", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 3px solid rgba(103, 70, 214, .28);
+            outline-offset: 3px;
+        }
+
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .site-header {
+            width: min(1420px, calc(100% - 64px));
+            height: 72px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .fasten-brand {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .fasten-brand img {
+            display: block;
+            width: 132px;
+            height: auto;
+        }
+
+        .meeting-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 0 7px;
+            border-bottom: 1.5px solid var(--ink);
+            color: var(--ink);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .meeting-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .demo-shell {
+            width: min(1420px, calc(100% - 64px));
+            height: calc(100vh - 92px);
+            height: calc(100dvh - 92px);
+            min-height: 0;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 1px solid rgba(33, 26, 45, .1);
+            border-radius: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .server-panel {
+            height: 100%;
+            min-width: 0;
+            min-height: 0;
+            background:
+                radial-gradient(circle at 96% 0%, rgba(122, 86, 222, .09), transparent 26rem),
+                #fdfcff;
+        }
+
+        .server-workspace {
+            height: 100%;
+            min-height: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .workflow-app {
+            min-height: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fdfcff;
+        }
+
+        .workflow-header {
+            flex: 0 0 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 0 clamp(24px, 5vw, 72px);
+            border-bottom: 1px solid #efebf2;
+            background: rgba(255, 255, 255, .94);
+        }
+
+        .acme-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Manrope", sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .acme-mark {
+            width: 29px;
+            height: 29px;
+            display: grid;
+            place-items: center;
+            border-radius: 9px;
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        .acme-mark svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .server-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #7d7588;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .server-badge::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ca678;
+            box-shadow: 0 0 0 3px rgba(76, 166, 120, .12);
+        }
+
+        .workflow-main {
+            min-height: 0;
+            flex: 1;
+            overflow: auto;
+            padding: 24px clamp(24px, 5vw, 72px) 18px;
+            scrollbar-width: thin;
+            scrollbar-color: #d5cde0 transparent;
+        }
+
+        .workflow-content {
+            width: min(100%, 1080px);
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            margin: 0 0 5px;
+            color: var(--purple);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .workflow-title {
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(27px, 2.7vw, 38px);
+            font-weight: 600;
+            line-height: 1.08;
+            letter-spacing: -.04em;
+        }
+
+        .workflow-lede {
+            max-width: 820px;
+            margin: 7px 0 0;
+            color: var(--muted);
+            font-size: 12.5px;
+            line-height: 1.45;
+        }
+
+        .implementation-context {
+            margin-top: 16px;
+            padding: 17px 20px;
+            border: 1px solid rgba(100, 68, 187, .16);
+            border-radius: 13px;
+            background:
+                radial-gradient(circle at 100% 0%, rgba(122, 86, 222, .12), transparent 21rem),
+                #f7f3ff;
+        }
+
+        .context-heading {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .context-heading h3 {
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -.02em;
+        }
+
+        .step-number {
+            flex: 0 0 auto;
+            color: var(--purple);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .1em;
+        }
+
+        .narrative-copy {
+            max-width: 920px;
+            margin: 8px 0 0;
+            color: #625a6e;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .what-happens {
+            margin-top: 12px;
+            padding-top: 11px;
+            border-top: 1px solid rgba(100, 68, 187, .13);
+        }
+
+        .what-happens > span {
+            color: #7d718e;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+        }
+
+        .what-list {
+            margin: 9px 0 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px 18px;
+            list-style: none;
+        }
+
+        .what-list li {
+            display: grid;
+            grid-template-columns: 17px minmax(0, 1fr);
+            gap: 7px;
+            color: #554c61;
+            font-size: 10.5px;
+            line-height: 1.4;
+        }
+
+        .what-list svg {
+            width: 15px;
+            height: 15px;
+            color: var(--purple);
+        }
+
+        .parameter-card {
+            margin-top: 12px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            background: var(--white);
+        }
+
+        .parameter-card header {
+            padding: 9px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--line);
+            color: #61586c;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .parameter-card header span:last-child {
+            color: #4c9d73;
+        }
+
+        .parameter-list {
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .parameter-row {
+            padding: 7px 12px;
+            display: grid;
+            grid-template-columns: 145px minmax(0, 1fr);
+            gap: 14px;
+            border-bottom: 1px solid #f0ecf3;
+            font-family: "DM Mono", monospace;
+            font-size: 9.5px;
+        }
+
+        .parameter-row:last-child {
+            border-bottom: 0;
+        }
+
+        .parameter-row dt {
+            color: #7c7188;
+        }
+
+        .parameter-row dd {
+            min-width: 0;
+            margin: 0;
+            overflow: hidden;
+            color: var(--ink);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .code-card {
+            margin-top: 12px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--code);
+            box-shadow: 0 12px 30px rgba(29, 23, 40, .16);
+        }
+
+        .code-toolbar {
+            height: 34px;
+            padding: 0 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .46);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .code-toolbar span:last-child {
+            color: var(--lime);
+        }
+
+        .code-card pre {
+            max-height: 280px;
+            margin: 0;
+            overflow: auto;
+            padding: 15px 16px 18px;
+            color: #eee9f6;
+            font: 10.5px/1.55 "DM Mono", monospace;
+            tab-size: 2;
+            white-space: pre;
+        }
+
+        .code-card code {
+            font: inherit;
+        }
+
+        .workflow-nav {
+            flex: 0 0 62px;
+            display: grid;
+            grid-template-columns: 120px 1fr 120px;
+            align-items: center;
+            gap: 14px;
+            padding: 0 clamp(24px, 5vw, 72px);
+            border-top: 1px solid var(--line);
+            background: rgba(255, 255, 255, .96);
+        }
+
+        .nav-button {
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            border: 0;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .nav-button:disabled {
+            opacity: .3;
+            cursor: not-allowed;
+        }
+
+        .nav-button svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .nav-button--back {
+            justify-self: start;
+            padding: 0 10px;
+            background: transparent;
+            color: #756d7f;
+        }
+
+        .nav-button--next {
+            justify-self: end;
+            width: 120px;
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        .progress {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .progress-dot {
+            width: 6px;
+            height: 6px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: #d3ccdc;
+            cursor: pointer;
+        }
+
+        .progress-dot.is-active {
+            width: 20px;
+            border-radius: 8px;
+            background: var(--purple);
+        }
+
+        .progress-label {
+            color: #91899c;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 1051px) and (max-height: 680px) {
+            .site-header {
+                height: 64px;
+            }
+
+            .demo-shell {
+                height: calc(100vh - 80px);
+                height: calc(100dvh - 80px);
+                margin-bottom: 16px;
+            }
+
+            .workflow-header {
+                flex-basis: 56px;
+            }
+
+            .workflow-main {
+                padding-top: 12px;
+                padding-bottom: 9px;
+            }
+
+            .workflow-title {
+                font-size: clamp(25px, 2.5vw, 34px);
+            }
+
+            .workflow-lede {
+                margin-top: 5px;
+                font-size: 11.5px;
+            }
+
+            .code-card,
+            .parameter-card {
+                margin-top: 8px;
+            }
+
+            .implementation-context {
+                margin-top: 10px;
+                padding: 12px 16px;
+            }
+
+            .narrative-copy {
+                margin-top: 5px;
+            }
+
+            .what-happens {
+                margin-top: 8px;
+                padding-top: 8px;
+            }
+
+            .what-list {
+                margin-top: 6px;
+            }
+
+            .code-card pre {
+                max-height: 195px;
+                padding-top: 11px;
+            }
+
+            .workflow-nav {
+                flex-basis: 55px;
+            }
+
+        }
+
+        @media (max-width: 1050px) {
+            .site-header,
+            .demo-shell {
+                width: min(100% - 36px, 860px);
+            }
+
+            .demo-shell {
+                height: auto;
+                margin-bottom: 32px;
+            }
+
+            .server-workspace {
+                min-height: 680px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .site-header {
+                width: calc(100% - 30px);
+                height: 76px;
+            }
+
+            .fasten-brand img {
+                width: 108px;
+            }
+
+            .meeting-link {
+                font-size: 12px;
+            }
+
+            .demo-shell {
+                width: 100%;
+                margin-bottom: 0;
+                border-right: 0;
+                border-bottom: 0;
+                border-left: 0;
+                border-radius: 0;
+            }
+
+            .server-workspace {
+                min-height: 720px;
+            }
+
+            .workflow-header {
+                padding: 0 20px;
+            }
+
+            .server-badge {
+                display: none;
+            }
+
+            .workflow-main {
+                padding: 22px 20px 16px;
+            }
+
+            .parameter-row {
+                grid-template-columns: 1fr;
+                gap: 3px;
+            }
+
+            .what-list {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-nav {
+                grid-template-columns: 88px 1fr 104px;
+                padding: 0 12px;
+                gap: 8px;
+            }
+
+            .nav-button--next {
+                width: 104px;
+            }
+
+            .progress-label {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    x-data="backendWalkthrough()"
+    @keydown.arrow-left.window="previous()"
+    @keydown.arrow-right.window="next()"
+>
+    <header class="site-header">
+        <a class="fasten-brand" href="https://www.fastenhealth.com/" target="_blank" rel="noreferrer" aria-label="Visit Fasten Health">
+            <img src="./fasten-logo.png" alt="Fasten">
+        </a>
+
+        <a class="meeting-link" href="https://calendly.com/jason-kulatunga/30min" target="_blank" rel="noreferrer">
+            Book a meeting
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M7 17 17 7M8 7h9v9"/>
+            </svg>
+        </a>
+    </header>
+
+    <main class="demo-shell" x-cloak>
+        <section class="server-panel" aria-label="AcmeLabs backend implementation walkthrough">
+            <div class="server-workspace">
+                <div class="workflow-app">
+                    <header class="workflow-header">
+                        <div class="acme-brand">
+                            <span class="acme-mark" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M9 3v6.2l-4 7A3.2 3.2 0 0 0 7.8 21h8.4a3.2 3.2 0 0 0 2.8-4.8l-4-7V3"/>
+                                    <path d="M8 13h8M8 3h8"/>
+                                </svg>
+                            </span>
+                            AcmeLabs
+                        </div>
+                        <span class="server-badge">Server-side workflow</span>
+                    </header>
+
+                    <div class="workflow-main" x-ref="workflowMain">
+                        <div class="workflow-content">
+                            <p class="eyebrow" x-text="currentStep.kicker"></p>
+                            <h2 class="workflow-title" x-text="currentStep.title"></h2>
+                            <p class="workflow-lede" x-text="currentStep.summary"></p>
+
+                            <section class="implementation-context" aria-live="polite">
+                                <div class="context-heading">
+                                    <span class="step-number" x-text="String(step).padStart(2, '0')"></span>
+                                    <h3 x-text="currentStep.narrativeTitle"></h3>
+                                </div>
+                                <p class="narrative-copy" x-text="currentStep.explanation"></p>
+
+                                <div class="what-happens">
+                                    <span>Implementation notes</span>
+                                    <ul class="what-list">
+                                        <template x-for="point in currentStep.points" :key="point">
+                                            <li>
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                                    <path d="m5 12 4 4L19 6"/>
+                                                </svg>
+                                                <span x-text="point"></span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </section>
+
+                            <template x-if="step === 1">
+                                <section class="parameter-card" aria-label="Received redirect parameters">
+                                    <header>
+                                        <span>Redirect query parameters</span>
+                                        <span>Received</span>
+                                    </header>
+                                    <dl class="parameter-list">
+                                        <template x-for="[key, value] in visibleQueryParams" :key="key">
+                                            <div class="parameter-row">
+                                                <dt x-text="key"></dt>
+                                                <dd x-text="value"></dd>
+                                            </div>
+                                        </template>
+                                    </dl>
+                                </section>
+                            </template>
+
+                            <section class="code-card" aria-label="Backend code example">
+                                <div class="code-toolbar">
+                                    <span x-text="currentStep.filename"></span>
+                                    <span x-text="currentStep.language"></span>
+                                </div>
+                                <pre><code x-text="codeSnippet"></code></pre>
+                            </section>
+                        </div>
+                    </div>
+
+                    <nav class="workflow-nav" aria-label="Backend implementation steps">
+                        <button class="nav-button nav-button--back" type="button" @click="previous()" :disabled="step === 1">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                            Back
+                        </button>
+
+                        <div class="progress">
+                            <div class="progress-dots" aria-hidden="true">
+                                <template x-for="item in steps" :key="item.number">
+                                    <button class="progress-dot" :class="{ 'is-active': step === item.number }" type="button" @click="go(item.number)"></button>
+                                </template>
+                            </div>
+                            <span class="progress-label" x-text="`Step ${step} of ${steps.length}`"></span>
+                        </div>
+
+                        <button class="nav-button nav-button--next" type="button" @click="step === steps.length ? go(1) : next()">
+                            <span x-text="step === steps.length ? 'Restart' : 'Next'"></span>
+                            <svg x-show="step !== steps.length" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function backendWalkthrough() {
+            return {
+                step: 1,
+                queryParams: Object.fromEntries(new URLSearchParams(window.location.search)),
+                steps: [
+                    {
+                        number: 1,
+                        kicker: "Redirect callback",
+                        title: "Receive the patient redirect.",
+                        summary: "Fasten returns the organization connection details to the redirect URL configured for your application.",
+                        filename: "routes/fasten.js",
+                        language: "Node.js",
+                        narrativeTitle: "Start with the connection Fasten returns.",
+                        explanation: "After the patient finishes connecting a healthcare organization, your redirect endpoint receives an org_connection_id. Treat it as the durable reference for this patient-to-organization connection.",
+                        points: [
+                            "Parse and validate org_connection_id on your server.",
+                            "Store the connection ID with your internal patient or case.",
+                            "Never place Fasten private credentials in browser code."
+                        ]
+                    },
+                    {
+                        number: 2,
+                        kicker: "EHI export",
+                        title: "Trigger medical record collection.",
+                        summary: "Use the connection ID in an authenticated server-side request to start a Fasten EHI export.",
+                        filename: "terminal",
+                        language: "cURL",
+                        narrativeTitle: "One API call starts the record workflow.",
+                        explanation: "Your backend sends org_connection_id to the Fasten Connect export endpoint. Fasten then collects and processes the patient-authorized records while your application continues asynchronously.",
+                        points: [
+                            "Authenticate with your public ID and private key.",
+                            "Keep API credentials in server-side secrets.",
+                            "Save the returned task identifier for observability."
+                        ]
+                    },
+                    {
+                        number: 3,
+                        kicker: "Webhook",
+                        title: "Handle the completion event.",
+                        summary: "Fasten notifies your webhook after the export is ready and includes a secure download link.",
+                        filename: "patient.ehi_export_success.json",
+                        language: "JSON",
+                        narrativeTitle: "Let the webhook replace polling.",
+                        explanation: "Record collection can take time across multiple healthcare systems. Instead of repeatedly checking status, configure a webhook and react to patient.ehi_export_success when Fasten finishes.",
+                        points: [
+                            "Verify and log each webhook event.",
+                            "Use the event ID for idempotent processing.",
+                            "Queue the download link for the next backend job."
+                        ]
+                    },
+                    {
+                        number: 4,
+                        kicker: "Bulk download",
+                        title: "Retrieve the completed JSONL export.",
+                        summary: "Download the export from the webhook-provided URL using the same server-side API credentials.",
+                        filename: "terminal",
+                        language: "cURL",
+                        narrativeTitle: "Download one normalized clinical export.",
+                        explanation: "The webhook download_link points to a JSONL file containing the patient’s records in FHIR format. Stream the file to secure storage rather than loading the entire export into memory.",
+                        points: [
+                            "Authenticate the download request server-side.",
+                            "Stream the response into encrypted storage.",
+                            "Associate the export with the original connection and task."
+                        ]
+                    },
+                    {
+                        number: 5,
+                        kicker: "FHIR import",
+                        title: "Import records into your system.",
+                        summary: "Process the JSONL file line by line and route each standard FHIR R4 resource into your application.",
+                        filename: "workers/import-fhir.js",
+                        language: "Node.js",
+                        narrativeTitle: "Use the records where your workflow needs them.",
+                        explanation: "Each JSONL line is a FHIR R4 resource such as Patient, Condition, Observation, or DocumentReference. From here, AcmeLabs can apply eligibility rules, populate a longitudinal record, or support manual review.",
+                        points: [
+                            "Parse JSONL as a stream for large exports.",
+                            "Upsert resources using resourceType and id.",
+                            "Track provenance back to the Fasten connection."
+                        ]
+                    }
+                ],
+                get currentStep() {
+                    return this.steps[this.step - 1];
+                },
+                get orgConnectionId() {
+                    return this.queryParams.org_connection_id || "test-org-connection-id-placeholder";
+                },
+                get apiMode() {
+                    return this.queryParams.api_mode || "test";
+                },
+                get visibleQueryParams() {
+                    const entries = Object.entries(this.queryParams);
+                    return entries.length ? entries.slice(0, 6) : [
+                        ["org_connection_id", this.orgConnectionId],
+                        ["api_mode", this.apiMode],
+                        ["external_id", "acmelabs-demo-participant"]
+                    ];
+                },
+                get codeSnippet() {
+                    if (this.step === 1) {
+                        return `app.get("/fasten/callback", async (req, res) => {
+  const { org_connection_id } = req.query;
+
+  if (!org_connection_id) {
+    return res.status(400).send("Missing org_connection_id");
+  }
+
+  await db.patientConnections.upsert({
+    patientId: req.user.id,
+    orgConnectionId: org_connection_id
+  });
+
+  res.redirect("/records-processing");
+});`;
+                    }
+
+                    if (this.step === 2) {
+                        return `curl -u "$FASTEN_PUBLIC_ID:$FASTEN_PRIVATE_KEY" \\
+  -X POST \\
+  -H "Content-Type: application/json" \\
+  --data '{"org_connection_id":"${this.orgConnectionId}"}' \\
+  https://api.connect.fastenhealth.com/v1/bridge/fhir/ehi-export`;
+                    }
+
+                    if (this.step === 3) {
+                        return `{
+  "api_mode": "${this.apiMode}",
+  "type": "patient.ehi_export_success",
+  "date": "2026-07-01T14:42:18Z",
+  "id": "1b37cf9b-702f-4fd1-bb00-d0fd8e6dbc89",
+  "data": {
+    "download_link": "https://api.connect.fastenhealth.com/v1/bridge/fhir/ehi-export/task_7f62/download/export.jsonl",
+    "task_id": "task_7f62",
+    "org_id": "org_acmelabs"
+  }
+}`;
+                    }
+
+                    if (this.step === 4) {
+                        return `curl -u "$FASTEN_PUBLIC_ID:$FASTEN_PRIVATE_KEY" \\
+  --location \\
+  --output patient_bulk_export.jsonl \\
+  "https://api.connect.fastenhealth.com/v1/bridge/fhir/ehi-export/task_7f62/download/export.jsonl"`;
+                    }
+
+                    return `import { createReadStream } from "node:fs";
+import { createInterface } from "node:readline";
+
+const lines = createInterface({
+  input: createReadStream("patient_bulk_export.jsonl"),
+  crlfDelay: Infinity
+});
+
+for await (const line of lines) {
+  const resource = JSON.parse(line);
+
+  await fhirStore.upsert({
+    connectionId: "${this.orgConnectionId}",
+    resourceType: resource.resourceType,
+    resourceId: resource.id,
+    resource
+  });
+}`;
+                },
+                go(number) {
+                    if (number < 1 || number > this.steps.length) return;
+                    this.step = number;
+                    this.$nextTick(() => {
+                        this.$refs.workflowMain?.scrollTo({ top: 0, behavior: "smooth" });
+                    });
+                },
+                next() {
+                    if (this.step < this.steps.length) this.go(this.step + 1);
+                },
+                previous() {
+                    if (this.step > 1) this.go(this.step - 1);
+                }
+            };
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+</body>
+</html>
