@@ -1,0 +1,2097 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AcmeLabs clinical trial recruitment demo powered by Fasten Connect.">
+    <title>AcmeLabs Clinical Trial Recruitment · Fasten Connect</title>
+    <link rel="icon" type="image/png" href="./fasten-logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.fastenhealth.com/connect/v4/fasten-stitch-element.css">
+
+    <style>
+        :root {
+            --ink: #211a2d;
+            --muted: #706a7a;
+            --line: #e5dfea;
+            --paper: #f6f3f9;
+            --white: #ffffff;
+            --foo: #6746d6;
+            --foo-dark: #291a47;
+            --foo-light: #eee8ff;
+            --mint: #c9b9ff;
+            --lime: #ddf27a;
+            --orange: #ff8c68;
+            --shadow: 0 28px 70px rgba(49, 32, 80, .16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-width: 320px;
+            background: var(--paper);
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background: white;
+            font-family: "DM Sans", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: 3px solid rgba(103, 70, 214, .3);
+            outline-offset: 3px;
+        }
+
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .site-header {
+            width: min(1420px, calc(100% - 64px));
+            height: 72px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .fasten-brand {
+            display: inline-flex;
+            align-items: center;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .fasten-brand img {
+            display: block;
+            width: 80px;
+            height: auto;
+        }
+
+        .meeting-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 0 8px;
+            color: var(--ink);
+            border-bottom: 1.5px solid var(--ink);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .01em;
+            transition: color .2s ease, border-color .2s ease;
+        }
+
+        .meeting-link:hover {
+            color: var(--foo);
+            border-color: var(--foo);
+        }
+
+        .meeting-link svg {
+            width: 16px;
+            height: 16px;
+            transition: transform .2s ease;
+        }
+
+        .meeting-link:hover svg {
+            transform: translate(3px, -3px);
+        }
+
+        .demo-shell {
+            width: min(1420px, calc(100% - 64px));
+            height: calc(100vh - 92px);
+            height: calc(100dvh - 92px);
+            min-height: 0;
+            margin: 0 auto 20px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.56fr) minmax(380px, .84fr);
+            overflow: hidden;
+            border: 1px solid rgba(33, 26, 45, .1);
+            border-radius: 24px;
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .browser-panel {
+            min-width: 0;
+            min-height: 0;
+            padding: 14px;
+            background:
+                linear-gradient(135deg, rgba(210, 197, 255, .78), rgba(246, 241, 252, .9));
+        }
+
+        .browser {
+            height: 100%;
+            min-height: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(77, 57, 112, .16);
+            border-radius: 16px;
+            background: var(--white);
+            box-shadow: 0 18px 44px rgba(62, 43, 96, .14);
+        }
+
+        .browser-chrome {
+            flex: 0 0 40px;
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr) 72px;
+            align-items: center;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--line);
+            background: #faf8fc;
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #dcd6e2;
+        }
+
+        .browser-dots span:first-child {
+            background: #ef8c70;
+        }
+
+        .browser-dots span:nth-child(2) {
+            background: #e7c75b;
+        }
+
+        .browser-dots span:nth-child(3) {
+            background: #75bb91;
+        }
+
+        .address-bar {
+            min-width: 0;
+            height: 29px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 0 16px;
+            border: 1px solid #e7e1ec;
+            border-radius: 8px;
+            background: var(--white);
+            color: #7d7588;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .01em;
+        }
+
+        .address-bar svg {
+            width: 12px;
+            flex: 0 0 12px;
+        }
+
+        .address-bar span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .browser-menu {
+            justify-self: end;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #918b99;
+            box-shadow: 0 -6px #918b99, 0 6px #918b99;
+        }
+
+        .trial-app {
+            min-height: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fdfcff;
+        }
+
+        .trial-header {
+            flex: 0 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 0 clamp(22px, 4vw, 50px);
+            border-bottom: 1px solid #efebf2;
+            background: rgba(255, 255, 255, .9);
+        }
+
+        .foolabs-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Manrope", sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -.02em;
+        }
+
+        .foo-mark {
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border-radius: 9px;
+            background: var(--foo);
+            color: var(--white);
+        }
+
+        .foo-mark svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .study-id {
+            color: #7d7588;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .trial-main {
+            min-height: 0;
+            flex: 1;
+            overflow: auto;
+            padding: 20px clamp(22px, 4vw, 52px) 16px;
+            scrollbar-width: thin;
+            scrollbar-color: #d5cde0 transparent;
+        }
+
+        .trial-content {
+            width: min(100%, 650px);
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            margin: 0 0 7px;
+            color: var(--foo);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+        }
+
+        .step-title {
+            max-width: 620px;
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(28px, 3vw, 42px);
+            font-weight: 600;
+            line-height: 1.08;
+            letter-spacing: -.045em;
+        }
+
+        .step-lede {
+            max-width: 590px;
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .study-card {
+            position: relative;
+            min-height: 148px;
+            margin-top: 16px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 168px;
+            border-radius: 18px;
+            background: var(--foo-dark);
+            color: var(--white);
+        }
+
+        .study-copy {
+            position: relative;
+            z-index: 1;
+            padding: 18px 22px;
+        }
+
+        .study-card .label {
+            display: inline-flex;
+            padding: 5px 8px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, .12);
+            color: var(--lime);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .study-card h3 {
+            max-width: 390px;
+            margin: 10px 0 6px;
+            font-family: "Manrope", sans-serif;
+            font-size: 19px;
+            line-height: 1.2;
+            letter-spacing: -.025em;
+        }
+
+        .study-card p {
+            margin: 0;
+            color: rgba(255, 255, 255, .68);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .study-art {
+            position: relative;
+            min-height: 148px;
+            background:
+                radial-gradient(circle at 52% 48%, rgba(221, 242, 122, .96) 0 25%, transparent 26%),
+                radial-gradient(circle at 72% 64%, rgba(255, 140, 104, .9) 0 15%, transparent 16%),
+                radial-gradient(circle at 30% 74%, rgba(201, 185, 255, .82) 0 18%, transparent 19%);
+        }
+
+        .study-art::before,
+        .study-art::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+        }
+
+        .study-art::before {
+            width: 132px;
+            height: 132px;
+            top: 8px;
+            right: -30px;
+        }
+
+        .study-art::after {
+            width: 82px;
+            height: 82px;
+            top: 32px;
+            right: 12px;
+        }
+
+        .quick-facts {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .fact {
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--white);
+        }
+
+        .fact span {
+            display: block;
+            color: #8d8598;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+        }
+
+        .fact strong {
+            display: block;
+            margin-top: 3px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 11px 14px;
+        }
+
+        .field {
+            min-width: 0;
+        }
+
+        .field--wide {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 5px;
+            color: #544c60;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            height: 43px;
+            padding: 0 14px;
+            border: 1px solid #ddd6e5;
+            border-radius: 10px;
+            background: var(--white);
+            color: var(--ink);
+            font-size: 14px;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--foo);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(103, 70, 214, .11);
+        }
+
+        .field input::placeholder {
+            color: #aaa3b2;
+        }
+
+        .choice-list {
+            margin-top: 16px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .choice {
+            position: relative;
+            display: grid;
+            grid-template-columns: 20px minmax(0, 1fr);
+            gap: 12px;
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--white);
+            cursor: pointer;
+            transition: border-color .2s ease, background .2s ease, transform .2s ease;
+        }
+
+        .choice:hover {
+            transform: translateY(-1px);
+            border-color: #c7bad8;
+        }
+
+        .choice:has(input:checked) {
+            border-color: var(--foo);
+            background: #f6f2ff;
+        }
+
+        .choice input {
+            width: 17px;
+            height: 17px;
+            margin: 2px 0 0;
+            accent-color: var(--foo);
+        }
+
+        .choice strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .choice small {
+            display: block;
+            margin-top: 3px;
+            color: #7d7588;
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+        .records-card {
+            margin-top: 16px;
+            padding: 18px;
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr);
+            gap: 17px;
+            border: 1px solid #ded3ef;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #f7f3ff, #ffffff);
+        }
+
+        .records-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--foo);
+            color: var(--white);
+        }
+
+        .records-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .records-copy h3 {
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            font-size: 17px;
+        }
+
+        .records-copy p {
+            margin: 7px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .records-copy fasten-stitch-element {
+            display: block;
+            margin-top: 12px;
+        }
+
+        .trust-row {
+            margin-top: 11px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            color: #71697b;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .trust-row span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .trust-row svg {
+            width: 13px;
+            height: 13px;
+            color: var(--foo);
+        }
+
+        .success-wrap {
+            min-height: 100%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+
+        .success-content {
+            max-width: 500px;
+        }
+
+        .success-mark {
+            width: 62px;
+            height: 62px;
+            margin: 0 auto 15px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--foo-light);
+            color: var(--foo);
+        }
+
+        .success-mark svg {
+            width: 34px;
+            height: 34px;
+        }
+
+        .success-wrap h2 {
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(28px, 3vw, 40px);
+            line-height: 1.08;
+            letter-spacing: -.045em;
+        }
+
+        .success-wrap p {
+            margin: 11px auto 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .success-next {
+            margin: 15px auto 0;
+            padding: 11px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            background: var(--white);
+            text-align: left;
+        }
+
+        .success-next svg {
+            width: 19px;
+            color: var(--foo);
+        }
+
+        .success-next strong,
+        .success-next span {
+            display: block;
+        }
+
+        .success-next strong {
+            font-size: 12px;
+        }
+
+        .success-next span {
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .backend-link {
+            margin: 17px auto 0;
+            padding: 7px 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: 0;
+            border-bottom: 1px solid #cfc5dc;
+            background: transparent;
+            color: #746881;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color .2s ease, border-color .2s ease, gap .2s ease;
+        }
+
+        .backend-link:hover {
+            gap: 10px;
+            color: var(--foo);
+            border-color: var(--foo);
+        }
+
+        .backend-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .wizard-nav {
+            flex: 0 0 64px;
+            display: grid;
+            grid-template-columns: 132px 1fr 132px;
+            align-items: center;
+            gap: 16px;
+            padding: 0 clamp(20px, 4vw, 46px);
+            border-top: 1px solid var(--line);
+            background: rgba(255, 255, 255, .96);
+        }
+
+        .nav-button {
+            min-height: 43px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: transform .2s ease, background .2s ease, color .2s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .nav-button:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        .nav-button svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .nav-button--back {
+            justify-self: start;
+            padding: 0 12px;
+            background: transparent;
+            color: #756d7f;
+        }
+
+        .nav-button--next {
+            justify-self: end;
+            width: 132px;
+            background: var(--foo);
+            color: var(--white);
+        }
+
+        .nav-button--next:hover {
+            background: var(--foo-dark);
+        }
+
+        .progress {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+        }
+
+        .progress-dots {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .progress-dot {
+            width: 6px;
+            height: 6px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: #d3ccdc;
+            cursor: pointer;
+            transition: width .2s ease, border-radius .2s ease, background .2s ease;
+        }
+
+        .progress-dot.is-active {
+            width: 20px;
+            border-radius: 10px;
+            background: var(--foo);
+        }
+
+        .progress-label {
+            color: #91899c;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .narrative-panel {
+            position: relative;
+            min-width: 0;
+            min-height: 0;
+            overflow: hidden;
+            padding: clamp(28px, 4.2vh, 42px) clamp(32px, 4.2vw, 60px);
+            display: flex;
+            flex-direction: column;
+            color: var(--white);
+            background:
+                radial-gradient(circle at 108% 11%, rgba(155, 120, 255, .3), transparent 17rem),
+                var(--foo-dark);
+        }
+
+        .narrative-panel::after {
+            content: "";
+            position: absolute;
+            right: -80px;
+            bottom: -110px;
+            width: 280px;
+            height: 280px;
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 46px rgba(255, 255, 255, .025),
+                0 0 0 92px rgba(255, 255, 255, .018);
+        }
+
+        .narrative-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: var(--lime);
+            font-family: "Manrope", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: .1em;
+        }
+
+        .step-number::after {
+            content: "";
+            width: 44px;
+            height: 1px;
+            background: currentColor;
+            opacity: .6;
+        }
+
+        .narrative-panel h1 {
+            max-width: 470px;
+            margin: 18px 0 0;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(31px, 3.25vw, 48px);
+            font-weight: 600;
+            line-height: 1.03;
+            letter-spacing: -.055em;
+        }
+
+        .narrative-copy {
+            max-width: 470px;
+            margin: 13px 0 0;
+            color: rgba(255, 255, 255, .68);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .what-happens {
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, .14);
+        }
+
+        .what-happens > span {
+            color: rgba(255, 255, 255, .46);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .11em;
+            text-transform: uppercase;
+        }
+
+        .what-list {
+            margin: 12px 0 0;
+            padding: 0;
+            display: grid;
+            gap: 9px;
+            list-style: none;
+        }
+
+        .what-list li {
+            display: grid;
+            grid-template-columns: 21px minmax(0, 1fr);
+            gap: 9px;
+            color: rgba(255, 255, 255, .84);
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .what-list svg {
+            width: 18px;
+            height: 18px;
+            color: var(--lime);
+        }
+
+        .powered-by {
+            position: relative;
+            z-index: 1;
+            margin-top: auto;
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, .45);
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .powered-by span {
+            color: rgba(255, 255, 255, .82);
+            font-weight: 700;
+        }
+
+        .settings-trigger {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 210;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(41, 26, 71, .14);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .92);
+            color: #746a81;
+            box-shadow: 0 8px 24px rgba(41, 26, 71, .16);
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+            transition: color .2s ease, transform .25s ease, background .2s ease;
+        }
+
+        .settings-trigger:hover {
+            color: var(--foo);
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .settings-trigger.is-open {
+            color: var(--foo);
+            transform: rotate(45deg);
+        }
+
+        .settings-trigger svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .settings-scrim {
+            position: fixed;
+            inset: 0;
+            z-index: 190;
+            background: rgba(25, 18, 37, .18);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+        }
+
+        .settings-scrim.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .settings-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 200;
+            width: min(360px, calc(100vw - 24px));
+            overflow-y: auto;
+            padding: 24px 22px 78px;
+            border-left: 1px solid var(--line);
+            background: rgba(253, 252, 255, .98);
+            box-shadow: -18px 0 50px rgba(41, 26, 71, .18);
+            transform: translateX(105%);
+            visibility: hidden;
+            transition: transform .3s cubic-bezier(.2, .75, .25, 1), visibility 0s linear .3s;
+        }
+
+        .settings-drawer.is-open {
+            transform: translateX(0);
+            visibility: visible;
+            transition-delay: 0s;
+        }
+
+        .settings-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .settings-kicker {
+            margin: 0 0 5px;
+            color: var(--foo);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .settings-header h2 {
+            margin: 0;
+            font-family: "Manrope", sans-serif;
+            font-size: 20px;
+            letter-spacing: -.025em;
+        }
+
+        .settings-close {
+            width: 31px;
+            height: 31px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 8px;
+            background: #f1edf7;
+            color: #776d83;
+            cursor: pointer;
+        }
+
+        .settings-close svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .settings-section {
+            padding: 19px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .settings-section:last-child {
+            border-bottom: 0;
+        }
+
+        .settings-label {
+            display: block;
+            margin: 0 0 5px;
+            color: var(--ink);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .settings-help {
+            margin: 0;
+            color: var(--muted);
+            font-size: 10.5px;
+            line-height: 1.45;
+        }
+
+        .mode-control {
+            margin-top: 13px;
+            padding: 3px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            border-radius: 10px;
+            background: #eee9f4;
+        }
+
+        .mode-button {
+            height: 36px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: #736a7d;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .mode-button.is-active {
+            background: var(--white);
+            color: var(--foo);
+            box-shadow: 0 2px 8px rgba(41, 26, 71, .1);
+        }
+
+        .mode-status {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .mode-status::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #e75d68;
+            box-shadow: 0 0 0 3px rgba(231, 93, 104, .12);
+        }
+
+        .mode-status.is-live::before {
+            background: #4ca678;
+            box-shadow: 0 0 0 3px rgba(76, 166, 120, .12);
+        }
+
+        .setting-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: start;
+            gap: 14px;
+        }
+
+        .setting-row + .setting-row {
+            margin-top: 18px;
+        }
+
+        .switch {
+            position: relative;
+            width: 35px;
+            height: 20px;
+            flex: 0 0 auto;
+        }
+
+        .switch input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .switch-track {
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: #d9d2e0;
+            cursor: pointer;
+            transition: background .2s ease, opacity .2s ease;
+        }
+
+        .switch-track::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--white);
+            box-shadow: 0 1px 4px rgba(41, 26, 71, .18);
+            transition: transform .2s ease;
+        }
+
+        .switch input:checked + .switch-track {
+            background: var(--foo);
+        }
+
+        .switch input:checked + .switch-track::after {
+            transform: translateX(15px);
+        }
+
+        .switch input:disabled + .switch-track {
+            opacity: .45;
+            cursor: not-allowed;
+        }
+
+        .settings-input {
+            width: 100%;
+            height: 38px;
+            margin-top: 10px;
+            padding: 0 11px;
+            border: 1px solid #dcd4e5;
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--ink);
+            font-size: 11px;
+        }
+
+        .settings-input:focus {
+            border-color: var(--foo);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(103, 70, 214, .1);
+        }
+
+        .settings-input:disabled {
+            background: #f2eef5;
+            color: #9d95a7;
+            cursor: not-allowed;
+        }
+
+        .settings-note {
+            margin-top: 12px;
+            padding: 10px 11px;
+            border-radius: 8px;
+            background: var(--foo-light);
+            color: #584677;
+            font-size: 10px;
+            line-height: 1.45;
+        }
+
+        @media (min-width: 1051px) and (max-height: 680px) {
+            .site-header {
+                height: 64px;
+            }
+
+            .demo-shell {
+                height: calc(100vh - 80px);
+                height: calc(100dvh - 80px);
+                margin-bottom: 16px;
+            }
+
+            .browser-panel {
+                padding: 10px;
+            }
+
+            .browser-chrome {
+                flex-basis: 36px;
+            }
+
+            .trial-header {
+                flex-basis: 52px;
+            }
+
+            .trial-main {
+                padding: 13px clamp(20px, 3.5vw, 44px) 10px;
+            }
+
+            .eyebrow {
+                margin-bottom: 5px;
+                font-size: 10px;
+            }
+
+            .step-title {
+                font-size: clamp(26px, 2.6vw, 35px);
+            }
+
+            .step-lede {
+                margin-top: 7px;
+                font-size: 13px;
+                line-height: 1.4;
+            }
+
+            .study-card {
+                min-height: 132px;
+                margin-top: 11px;
+            }
+
+            .study-copy {
+                padding: 14px 18px;
+            }
+
+            .study-card h3 {
+                margin-top: 7px;
+                font-size: 17px;
+            }
+
+            .study-art {
+                min-height: 132px;
+            }
+
+            .quick-facts {
+                margin-top: 8px;
+            }
+
+            .fact {
+                padding: 7px 10px;
+            }
+
+            .wizard-nav {
+                flex-basis: 56px;
+            }
+
+            .narrative-panel {
+                padding: 18px 38px;
+            }
+
+            .step-number {
+                font-size: 12px;
+            }
+
+            .narrative-panel h1 {
+                margin-top: 12px;
+                font-size: clamp(29px, 2.8vw, 39px);
+                line-height: 1.01;
+            }
+
+            .narrative-copy {
+                margin-top: 9px;
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .what-happens {
+                margin-top: 14px;
+                padding-top: 11px;
+            }
+
+            .what-list {
+                margin-top: 9px;
+                gap: 6px;
+            }
+
+            .what-list li {
+                font-size: 10.5px;
+                line-height: 1.3;
+            }
+
+            .powered-by {
+                padding-top: 8px;
+            }
+        }
+
+        @media (max-width: 1050px) {
+            .site-header,
+            .demo-shell {
+                width: min(100% - 36px, 860px);
+            }
+
+            .demo-shell {
+                height: auto;
+                grid-template-columns: 1fr;
+                margin-bottom: 32px;
+            }
+
+            .narrative-panel {
+                min-height: 560px;
+                order: -1;
+            }
+
+            .browser {
+                min-height: 700px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .site-header {
+                width: calc(100% - 30px);
+                height: 76px;
+            }
+
+            .fasten-brand img {
+                width: 108px;
+            }
+
+            .meeting-link {
+                font-size: 12px;
+            }
+
+            .demo-shell {
+                width: 100%;
+                margin-bottom: 0;
+                border-right: 0;
+                border-bottom: 0;
+                border-left: 0;
+                border-radius: 0;
+            }
+
+            .narrative-panel {
+                min-height: 520px;
+                padding: 54px 28px;
+            }
+
+            .browser-panel {
+                padding: 12px;
+            }
+
+            .browser {
+                min-height: 720px;
+                border-radius: 12px;
+            }
+
+            .browser-chrome {
+                grid-template-columns: 52px minmax(0, 1fr) 32px;
+                padding: 0 12px;
+            }
+
+            .trial-header {
+                padding: 0 20px;
+            }
+
+            .study-id {
+                display: none;
+            }
+
+            .trial-main {
+                padding: 30px 22px 24px;
+            }
+
+            .study-card {
+                grid-template-columns: 1fr;
+            }
+
+            .study-art {
+                display: none;
+            }
+
+            .quick-facts,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field--wide {
+                grid-column: auto;
+            }
+
+            .wizard-nav {
+                grid-template-columns: 88px 1fr 104px;
+                padding: 0 12px;
+                gap: 8px;
+            }
+
+            .nav-button--next {
+                width: 104px;
+            }
+
+            .progress-label {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    x-data="recruitmentDemo()"
+    x-init="init()"
+    @keydown.arrow-left.window="if (!settingsOpen) previous()"
+    @keydown.arrow-right.window="if (!settingsOpen) next()"
+    @keydown.escape.window="settingsOpen = false"
+>
+    <header class="site-header">
+        <a class="fasten-brand" href="https://www.fastenhealth.com/" target="_blank" rel="noreferrer" aria-label="Visit Fasten Health">
+            <img src="./fasten-logo.png" alt="Fasten">
+        </a>
+
+        <a class="meeting-link" href="https://calendly.com/jason-kulatunga/30min" target="_blank" rel="noreferrer">
+            Book a meeting
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M7 17 17 7M8 7h9v9"/>
+            </svg>
+        </a>
+    </header>
+
+    <main class="demo-shell" x-cloak>
+        <section class="browser-panel" aria-label="AcmeLabs clinical trial recruitment demo">
+            <div class="browser">
+                <div class="browser-chrome" aria-hidden="true">
+                    <div class="browser-dots"><span></span><span></span><span></span></div>
+                    <div class="address-bar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="10" width="14" height="10" rx="2"/>
+                            <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                        </svg>
+                        <span>trials.acmelabs.com/match</span>
+                    </div>
+                    <span class="browser-menu"></span>
+                </div>
+
+                <div class="trial-app">
+                    <header class="trial-header">
+                        <div class="foolabs-brand">
+                            <span class="foo-mark" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M9 3v6.2l-4 7A3.2 3.2 0 0 0 7.8 21h8.4a3.2 3.2 0 0 0 2.8-4.8l-4-7V3"/>
+                                    <path d="M8 13h8M8 3h8"/>
+                                </svg>
+                            </span>
+                            AcmeLabs
+                        </div>
+                        <span class="study-id">Study FL-2048 · Phase III</span>
+                    </header>
+
+                    <div class="trial-main" x-ref="trialMain">
+                        <div class="trial-content">
+                            <template x-if="step === 1">
+                                <section aria-labelledby="step-one-title">
+                                    <p class="eyebrow">New research opportunity</p>
+                                    <h2 class="step-title" id="step-one-title">A better way to see if a study fits you.</h2>
+                                    <p class="step-lede">Answer a few questions and securely connect your health records. Our research team will review your match—no faxing, phone tag, or paperwork required.</p>
+
+                                    <article class="study-card">
+                                        <div class="study-copy">
+                                            <span class="label">Now recruiting</span>
+                                            <h3>HeartForward cholesterol research study</h3>
+                                            <p>Evaluating an investigational treatment for adults managing high LDL cholesterol.</p>
+                                        </div>
+                                        <div class="study-art" aria-hidden="true"></div>
+                                    </article>
+
+                                    <div class="quick-facts" aria-label="Study details">
+                                        <div class="fact"><span>Time</span><strong>12 months</strong></div>
+                                        <div class="fact"><span>Visits</span><strong>6 total</strong></div>
+                                        <div class="fact"><span>Locations</span><strong>14 nearby</strong></div>
+                                    </div>
+                                </section>
+                            </template>
+
+                            <template x-if="step === 2">
+                                <section aria-labelledby="step-two-title">
+                                    <p class="eyebrow">About you</p>
+                                    <h2 class="step-title" id="step-two-title">Let’s start with the basics.</h2>
+                                    <p class="step-lede">This helps AcmeLabs identify nearby study sites and confirm that the study is appropriate for your age group.</p>
+
+                                    <form class="form-grid" @submit.prevent>
+                                        <div class="field field--wide">
+                                            <label for="full-name">Full name</label>
+                                            <input id="full-name" type="text" x-model="participant.name" placeholder="Alex Morgan" autocomplete="name">
+                                        </div>
+                                        <div class="field">
+                                            <label for="birth-date">Date of birth</label>
+                                            <input id="birth-date" type="date" x-model="participant.birthDate" autocomplete="bday">
+                                        </div>
+                                        <div class="field">
+                                            <label for="zip-code">ZIP code</label>
+                                            <input id="zip-code" type="text" x-model="participant.zip" placeholder="11201" inputmode="numeric" autocomplete="postal-code" maxlength="5">
+                                        </div>
+                                        <div class="field">
+                                            <label for="email">Email</label>
+                                            <input id="email" type="email" x-model="participant.email" placeholder="alex@example.com" autocomplete="email">
+                                        </div>
+                                        <div class="field">
+                                            <label for="contact">Preferred contact</label>
+                                            <select id="contact" x-model="participant.contact">
+                                                <option>Email</option>
+                                                <option>Text message</option>
+                                                <option>Phone call</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </section>
+                            </template>
+
+                            <template x-if="step === 3">
+                                <section aria-labelledby="step-three-title">
+                                    <p class="eyebrow">Quick health check</p>
+                                    <h2 class="step-title" id="step-three-title">A few questions about your heart health.</h2>
+                                    <p class="step-lede">Your answers provide a quick preliminary screen. The research team will confirm eligibility using your authorized medical records.</p>
+
+                                    <div class="choice-list">
+                                        <label class="choice">
+                                            <input type="checkbox" x-model="participant.highCholesterol">
+                                            <span>
+                                                <strong>I have been told I have high cholesterol</strong>
+                                                <small>Including elevated LDL cholesterol or hyperlipidemia.</small>
+                                            </span>
+                                        </label>
+                                        <label class="choice">
+                                            <input type="checkbox" x-model="participant.medication">
+                                            <span>
+                                                <strong>I currently take cholesterol medication</strong>
+                                                <small>For example, a statin or another lipid-lowering medicine.</small>
+                                            </span>
+                                        </label>
+                                        <label class="choice">
+                                            <input type="checkbox" x-model="participant.cardiovascularHistory">
+                                            <span>
+                                                <strong>I have a history of cardiovascular disease</strong>
+                                                <small>Such as a prior heart attack, stroke, or arterial procedure.</small>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </section>
+                            </template>
+
+                            <template x-if="step === 4">
+                                <section aria-labelledby="step-four-title">
+                                    <p class="eyebrow">Secure record connection</p>
+                                    <h2 class="step-title" id="step-four-title">Connect your health records.</h2>
+                                    <p class="step-lede">Choose your healthcare organizations and sign in to their patient portals. You stay in control of which records you authorize.</p>
+
+                                    <div class="records-card">
+                                        <div class="records-icon" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                                <path d="M12 3 4.5 6v5.4c0 4.7 3.1 8 7.5 9.6 4.4-1.6 7.5-4.9 7.5-9.6V6L12 3Z"/>
+                                                <path d="M9 12h6M12 9v6"/>
+                                            </svg>
+                                        </div>
+                                        <div class="records-copy">
+                                            <h3>Share with AcmeLabs via Fasten Connect</h3>
+                                            <p>Fasten connects directly to participating healthcare systems. AcmeLabs receives only the records you authorize for this screening.</p>
+
+                                            <template x-for="widgetInstance in [widgetKey]" :key="widgetInstance">
+                                                <fasten-stitch-element
+                                                    external-id="acmelabs-demo-participant"
+                                                    :public-id="widgetPublicId"
+                                                    show-splash="false"
+                                                    :email="participant.email"
+                                                    :search-query="activeSearchQuery"
+                                                    :search-sort-by="widgetConfig.locationSort ? 'location' : ''"
+                                                    :search-sort-by-opts="locationSortOptions"
+                                                    :tefca-mode="widgetConfig.tefcaMode"
+                                                    :tefca-csp-prompt-force="widgetConfig.tefcaMode && widgetConfig.cspPromptForce"
+                                                    :reconnect-org-connection-id="activeReconnectOrgConnectionId"
+                                                    x-init="$el.addEventListener('eventBus', event => handleWidgetEvent(event))"
+                                                ></fasten-stitch-element>
+                                            </template>
+
+                                            <div class="trust-row">
+                                                <span>
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+                                                    HIPAA-ready
+                                                </span>
+                                                <span>
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+                                                    Encrypted
+                                                </span>
+                                                <span>
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+                                                    Patient-authorized
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </template>
+
+                            <template x-if="step === 5">
+                                <section class="success-wrap" aria-labelledby="step-five-title">
+                                    <div class="success-content">
+                                        <div class="success-mark" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="m5 12 4.2 4.2L19 6.5"/>
+                                            </svg>
+                                        </div>
+                                        <p class="eyebrow">Screening complete</p>
+                                        <h2 id="step-five-title">Thanks, <span x-text="firstName"></span>. You’re all set.</h2>
+                                        <p>AcmeLabs will securely review your information and contact you within 2–3 business days if the HeartForward study looks like a match.</p>
+                                        <div class="success-next">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                                <path d="M4 7h16v12H4zM8 4h8v3M8 11h8M8 15h5"/>
+                                            </svg>
+                                            <div>
+                                                <strong>What happens next</strong>
+                                                <span>A research coordinator may ask a few follow-up questions.</span>
+                                            </div>
+                                        </div>
+                                        <button class="backend-link" type="button" @click="redirectToBackend()">
+                                            View the backend implementation
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                                <path d="M5 12h14M13 6l6 6-6 6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </section>
+                            </template>
+                        </div>
+                    </div>
+
+                    <nav class="wizard-nav" aria-label="Recruitment steps">
+                        <button class="nav-button nav-button--back" type="button" @click="previous()" :disabled="step === 1" aria-label="Go to previous step">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                            Back
+                        </button>
+
+                        <div class="progress">
+                            <div class="progress-dots" aria-hidden="true">
+                                <template x-for="item in steps" :key="item.number">
+                                    <button
+                                        class="progress-dot"
+                                        :class="{ 'is-active': step === item.number }"
+                                        type="button"
+                                        @click="go(item.number)"
+                                        :tabindex="step === item.number ? 0 : -1"
+                                    ></button>
+                                </template>
+                            </div>
+                            <span class="progress-label" x-text="`Step ${step} of ${steps.length}`"></span>
+                        </div>
+
+                        <button class="nav-button nav-button--next" type="button" @click="step === steps.length ? restart() : next()">
+                            <span x-text="step === steps.length ? 'Start over' : (step === 4 ? 'Finish' : 'Continue')"></span>
+                            <svg x-show="step !== steps.length" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <aside class="narrative-panel" aria-live="polite">
+            <div class="narrative-content">
+                <div class="step-number" x-text="String(step).padStart(2, '0')"></div>
+                <h1 x-text="currentStep.title"></h1>
+                <p class="narrative-copy" x-text="currentStep.explanation"></p>
+
+                <div class="what-happens">
+                    <span>What’s happening</span>
+                    <ul class="what-list">
+                        <template x-for="point in currentStep.points" :key="point">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="m5 12 4 4L19 6"/>
+                                </svg>
+                                <span x-text="point"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="powered-by">Experience powered by <a style="color: white; text-decoration: none;" href="https://www.fastenhealth.com">Fasten Connect</a></div>
+        </aside>
+    </main>
+
+    <div
+        class="settings-scrim"
+        :class="{ 'is-open': settingsOpen }"
+        @click="settingsOpen = false"
+        aria-hidden="true"
+    ></div>
+
+    <aside
+        class="settings-drawer"
+        :class="{ 'is-open': settingsOpen }"
+        :aria-hidden="(!settingsOpen).toString()"
+        id="widget-settings"
+        aria-labelledby="widget-settings-title"
+    >
+        <header class="settings-header">
+            <div>
+                <p class="settings-kicker">Demo controls</p>
+                <h2 id="widget-settings-title">Fasten Widget options</h2>
+            </div>
+            <button class="settings-close" type="button" @click="settingsOpen = false" aria-label="Close widget settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="m6 6 12 12M18 6 6 18"/>
+                </svg>
+            </button>
+        </header>
+
+        <section class="settings-section">
+            <span class="settings-label">API mode</span>
+            <p class="settings-help">Switch between the AcmeLabs test and live Fasten configurations.</p>
+            <div class="mode-control" role="group" aria-label="Fasten API mode">
+                <button
+                    class="mode-button"
+                    :class="{ 'is-active': !isLive }"
+                    type="button"
+                    @click="setMode('test')"
+                    :aria-pressed="(!isLive).toString()"
+                >Test mode</button>
+                <button
+                    class="mode-button"
+                    :class="{ 'is-active': isLive }"
+                    type="button"
+                    @click="setMode('live')"
+                    :aria-pressed="isLive.toString()"
+                >Live mode</button>
+            </div>
+            <div class="mode-status" :class="{ 'is-live': isLive }">
+                <span x-text="isLive ? 'Live patient connections' : 'Synthetic test data'"></span>
+            </div>
+        </section>
+
+        <section class="settings-section">
+            <div class="setting-row">
+                <div>
+                    <span class="settings-label">Prefill search</span>
+                    <p class="settings-help">Start the health-system search with a query already entered.</p>
+                </div>
+                <label class="switch">
+                    <input
+                        type="checkbox"
+                        x-model="widgetConfig.prefillSearch"
+                        @change="refreshWidget()"
+                        aria-label="Prefill health system search"
+                    >
+                    <span class="switch-track"></span>
+                </label>
+            </div>
+            <input
+                class="settings-input"
+                type="text"
+                x-model="widgetConfig.searchQuery"
+                @change="refreshWidget()"
+                :disabled="!widgetConfig.prefillSearch"
+                placeholder="e.g. Mayo Clinic"
+                aria-label="Prefilled search query"
+            >
+        </section>
+
+        <section class="settings-section">
+            <div class="setting-row">
+                <div>
+                    <span class="settings-label">Location sort</span>
+                    <p class="settings-help">Prioritize health systems near the supplied ZIP code.</p>
+                </div>
+                <label class="switch">
+                    <input
+                        type="checkbox"
+                        x-model="widgetConfig.locationSort"
+                        @change="refreshWidget()"
+                        aria-label="Enable location sorting"
+                    >
+                    <span class="switch-track"></span>
+                </label>
+            </div>
+            <input
+                class="settings-input"
+                type="text"
+                inputmode="numeric"
+                maxlength="5"
+                x-model="widgetConfig.zipCode"
+                @change="refreshWidget()"
+                :disabled="!widgetConfig.locationSort"
+                placeholder="ZIP code"
+                aria-label="Location sort ZIP code"
+            >
+        </section>
+
+        <section class="settings-section">
+            <div class="setting-row">
+                <div>
+                    <span class="settings-label">TEFCA mode</span>
+                    <p class="settings-help">Use TEFCA-facilitated identity and record discovery.</p>
+                </div>
+                <label class="switch">
+                    <input
+                        type="checkbox"
+                        x-model="widgetConfig.tefcaMode"
+                        @change="handleTefcaChange()"
+                        aria-label="Enable TEFCA mode"
+                    >
+                    <span class="switch-track"></span>
+                </label>
+            </div>
+
+            <div class="setting-row">
+                <div>
+                    <span class="settings-label">CSP prompt</span>
+                    <p class="settings-help">Force the credential service provider prompt during TEFCA discovery.</p>
+                </div>
+                <label class="switch">
+                    <input
+                        type="checkbox"
+                        x-model="widgetConfig.cspPromptForce"
+                        @change="refreshWidget()"
+                        :disabled="!widgetConfig.tefcaMode"
+                        aria-label="Force CSP prompt"
+                    >
+                    <span class="switch-track"></span>
+                </label>
+            </div>
+        </section>
+
+        <section class="settings-section">
+            <div class="setting-row">
+                <div>
+                    <span class="settings-label">Reconnect</span>
+                    <p class="settings-help">Open the widget for an existing organization connection.</p>
+                </div>
+                <label class="switch">
+                    <input
+                        type="checkbox"
+                        x-model="widgetConfig.reconnectEnabled"
+                        @change="refreshWidget()"
+                        aria-label="Enable reconnect mode"
+                    >
+                    <span class="switch-track"></span>
+                </label>
+            </div>
+            <input
+                class="settings-input"
+                type="text"
+                :value="currentReconnectInput"
+                @change="setReconnectId($event.target.value)"
+                :disabled="!widgetConfig.reconnectEnabled"
+                :placeholder="isLive ? 'live-org-connection-id-placeholder' : 'test-org-connection-id-placeholder'"
+                aria-label="Organization connection ID"
+            >
+            <div class="settings-note">
+                The placeholder connection ID changes with API mode, so live and test reconnect flows stay separate.
+            </div>
+        </section>
+    </aside>
+
+    <button
+        class="settings-trigger"
+        :class="{ 'is-open': settingsOpen }"
+        type="button"
+        @click="settingsOpen = !settingsOpen"
+        :aria-expanded="settingsOpen.toString()"
+        aria-controls="widget-settings"
+        :aria-label="settingsOpen ? 'Hide Fasten Widget settings' : 'Customize Fasten Widget'"
+    >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M12 15.3a3.3 3.3 0 1 0 0-6.6 3.3 3.3 0 0 0 0 6.6Z"/>
+            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.86 2.86-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1.1V21H9.5v-.1A1.7 1.7 0 0 0 8.4 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.86-2.86.06-.06A1.7 1.7 0 0 0 4 15a1.7 1.7 0 0 0-.6-1 1.7 1.7 0 0 0-1.1-.4H2V9.5h.3A1.7 1.7 0 0 0 4 8.4a1.7 1.7 0 0 0-.34-1.88l-.06-.06L6.46 3.6l.06.06A1.7 1.7 0 0 0 8.4 4a1.7 1.7 0 0 0 1-.6A1.7 1.7 0 0 0 9.8 2.3V2h4.1v.3A1.7 1.7 0 0 0 15 4a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.86 2.86-.06.06A1.7 1.7 0 0 0 19.4 8.4a1.7 1.7 0 0 0 .6 1 1.7 1.7 0 0 0 1.1.4h.3v4.1h-.3A1.7 1.7 0 0 0 19.4 15Z"/>
+        </svg>
+    </button>
+
+    <script src="https://cdn.fastenhealth.com/connect/v4/fasten-stitch-element.js" type="module"></script>
+    <script>
+        function recruitmentDemo() {
+            return {
+                step: 1,
+                connected: false,
+                connections: [],
+                settingsOpen: false,
+                widgetKey: 0,
+                widgetConfig: {
+                    mode: "test",
+                    prefillSearch: false,
+                    searchQuery: "Epic",
+                    locationSort: false,
+                    zipCode: "11201",
+                    tefcaMode: false,
+                    cspPromptForce: false,
+                    reconnectEnabled: false,
+                    testReconnectId: "test-org-connection-id-placeholder",
+                    liveReconnectId: "live-org-connection-id-placeholder"
+                },
+                participant: {
+                    name: "Alex Morgan",
+                    birthDate: "1978-06-14",
+                    zip: "11201",
+                    email: "alex@example.com",
+                    contact: "Email",
+                    highCholesterol: true,
+                    medication: true,
+                    cardiovascularHistory: false
+                },
+                steps: [
+                    {
+                        number: 1,
+                        title: "Keep the patient experience that already works for you.",
+                        explanation: "Your patient journey might begin on a study page, in a member portal, through a referral partner, or with a coordinator. Fasten works downstream of that intake, so your team can add record retrieval without rebuilding the systems and workflows around it.",
+                        points: [
+                            "Continue using your existing branded entry point and patient messaging.",
+                            "Keep the education, consent, and engagement steps your team has already built.",
+                            "Introduce Fasten only when the patient is ready to retrieve their records."
+                        ]
+                    },
+                    {
+                        number: 2,
+                        title: "Keep the patient experience that already works for you.",
+                        explanation: "Your patient journey might begin on a study page, in a member portal, through a referral partner, or with a coordinator. Fasten works downstream of that intake, so your team can add record retrieval without rebuilding the systems and workflows around it.",
+                        points: [
+                            "Continue using your existing branded entry point and patient messaging.",
+                            "Keep the education, consent, and engagement steps your team has already built.",
+                            "Introduce Fasten only when the patient is ready to retrieve their records."
+                        ]
+                    },
+                    {
+                        number: 3,
+                        title: "Keep the patient experience that already works for you.",
+                        explanation: "Your patient journey might begin on a study page, in a member portal, through a referral partner, or with a coordinator. Fasten works downstream of that intake, so your team can add record retrieval without rebuilding the systems and workflows around it.",
+                        points: [
+                            "Continue using your existing branded entry point and patient messaging.",
+                            "Keep the education, consent, and engagement steps your team has already built.",
+                            "Introduce Fasten only when the patient is ready to retrieve their records."
+                        ]
+                    },
+                    {
+                        number: 4,
+                        title: "Replace record chasing with one embedded connection.",
+                        explanation: "Release forms, faxes, portal screenshots, and manual chart requests can stall screening for days or weeks. The Fasten Widget lets FooClinic patients authorize records directly from their healthcare organizations inside the same experience.",
+                        points: [
+                            "Embed a patient-authorized record connection with one Fasten integration.",
+                            "Receive normalized clinical data instead of reviewing scattered documents.",
+                            "Reduce follow-up work for both patients and recruitment teams."
+                        ]
+                    },
+                    {
+                        number: 5,
+                        title: "Hand coordinators a review-ready candidate.",
+                        explanation: "Traditional handoffs often leave patients uncertain and staff starting outreach with incomplete information. The FooClinic example closes the loop for the patient while giving the customer a richer, more actionable candidate profile.",
+                        points: [
+                            "Give patients a clear confirmation and timeline for follow-up.",
+                            "Combine intake, pre-screen answers, and authorized records in one workflow.",
+                            "Help coordinators prioritize stronger candidates and begin outreach sooner."
+                        ]
+                    }
+                ],
+                get currentStep() {
+                    return this.steps[this.step - 1];
+                },
+                get firstName() {
+                    return this.participant.name.trim().split(/\s+/)[0] || "there";
+                },
+                get isLive() {
+                    return this.widgetConfig.mode === "live";
+                },
+                get widgetPublicId() {
+                    return this.isLive
+                        ? "public_live_luezin9lp65gprse02h0jox7dmkhi5406kujj4fjsar1b"
+                        : "public_test_6f5j7qj54rlyajv6u8r36z0iu5v9qjf87f77tzl3k6ezu";
+                },
+                get activeSearchQuery() {
+                    return this.widgetConfig.prefillSearch ? this.widgetConfig.searchQuery.trim() : "";
+                },
+                get locationSortOptions() {
+                    if (!this.widgetConfig.locationSort || !this.widgetConfig.zipCode.trim()) return "";
+
+                    return window.btoa(JSON.stringify({
+                        location: {
+                            zipcodes: [this.widgetConfig.zipCode.trim()]
+                        }
+                    }));
+                },
+                get activeReconnectOrgConnectionId() {
+                    if (!this.widgetConfig.reconnectEnabled) return "";
+                    return this.isLive
+                        ? this.widgetConfig.liveReconnectId
+                        : this.widgetConfig.testReconnectId;
+                },
+                get currentReconnectInput() {
+                    return this.isLive
+                        ? this.widgetConfig.liveReconnectId
+                        : this.widgetConfig.testReconnectId;
+                },
+                init() {},
+                refreshWidget() {
+                    this.widgetKey += 1;
+                },
+                setMode(mode) {
+                    if (this.widgetConfig.mode === mode) return;
+                    this.widgetConfig.mode = mode;
+                    this.refreshWidget();
+                },
+                handleTefcaChange() {
+                    if (!this.widgetConfig.tefcaMode) {
+                        this.widgetConfig.cspPromptForce = false;
+                    }
+                    this.refreshWidget();
+                },
+                setReconnectId(value) {
+                    if (this.isLive) {
+                        this.widgetConfig.liveReconnectId = value;
+                    } else {
+                        this.widgetConfig.testReconnectId = value;
+                    }
+                    this.refreshWidget();
+                },
+                handleWidgetEvent(event) {
+                    try {
+                        const payload = typeof event.detail?.data === "string"
+                            ? JSON.parse(event.detail.data)
+                            : event.detail?.data;
+
+                        if (payload?.event_type === "widget.complete") {
+                            this.connected = true;
+                            this.connections = Array.isArray(payload.data) ? payload.data : [];
+                            this.go(5);
+                        }
+                    } catch (error) {
+                        console.warn("Unable to parse Fasten Connect event", error);
+                    }
+                },
+                go(number) {
+                    if (number < 1 || number > this.steps.length) return;
+                    this.step = number;
+                    this.$nextTick(() => {
+                        this.$refs.trialMain?.scrollTo({ top: 0, behavior: "smooth" });
+                    });
+                },
+                next() {
+                    if (this.step < this.steps.length) this.go(this.step + 1);
+                },
+                previous() {
+                    if (this.step > 1) this.go(this.step - 1);
+                },
+                restart() {
+                    this.connected = false;
+                    this.connections = [];
+                    this.go(1);
+                },
+                redirectToBackend() {
+                    const connection = this.connections[0] || {
+                        org_connection_id: this.isLive
+                            ? "live-org-connection-id-placeholder"
+                            : "test-org-connection-id-placeholder",
+                        catalog_brand_id: "acmelabs-demo-brand",
+                        catalog_portal_id: "acmelabs-demo-portal",
+                        catalog_endpoint_id: "acmelabs-demo-endpoint",
+                        platform_type: "web"
+                    };
+                    const redirectUrl = new URL("redirect.html", window.location.href);
+
+                    Object.entries(connection).forEach(([key, value]) => {
+                        if (value === null || value === undefined || typeof value === "object") return;
+                        redirectUrl.searchParams.set(key, String(value));
+                    });
+
+                    redirectUrl.searchParams.set("api_mode", this.widgetConfig.mode);
+                    redirectUrl.searchParams.set("external_id", "acmelabs-demo-participant");
+                    window.location.href = redirectUrl.toString();
+                }
+            };
+        }
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+</body>
+</html>
