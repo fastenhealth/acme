@@ -1561,7 +1561,7 @@
                                                 <fasten-stitch-element
                                                     external-id="foolabs-demo-participant"
                                                     :public-id="widgetPublicId"
-                                                    show-splash="true"
+                                                    show-splash="false"
                                                     :email="participant.email"
                                                     :search-query="activeSearchQuery"
                                                     :search-sort-by="widgetConfig.locationSort ? 'location' : ''"
@@ -1745,7 +1745,7 @@
                 x-model="widgetConfig.searchQuery"
                 @change="refreshWidget()"
                 :disabled="!widgetConfig.prefillSearch"
-                placeholder="e.g. cardiology"
+                placeholder="e.g. Mayo Clinic"
                 aria-label="Prefilled search query"
             >
         </section>
@@ -1871,7 +1871,7 @@
                 widgetConfig: {
                     mode: "test",
                     prefillSearch: false,
-                    searchQuery: "cardiology",
+                    searchQuery: "Epic",
                     locationSort: false,
                     zipCode: "11201",
                     tefcaMode: false,
