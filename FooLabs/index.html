@@ -73,7 +73,7 @@
 
         .site-header {
             width: min(1420px, calc(100% - 64px));
-            height: 92px;
+            height: 72px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -125,8 +125,10 @@
 
         .demo-shell {
             width: min(1420px, calc(100% - 64px));
-            min-height: calc(100vh - 124px);
-            margin: 0 auto 32px;
+            height: calc(100vh - 92px);
+            height: calc(100dvh - 92px);
+            min-height: 0;
+            margin: 0 auto 20px;
             display: grid;
             grid-template-columns: minmax(0, 1.56fr) minmax(380px, .84fr);
             overflow: hidden;
@@ -138,14 +140,15 @@
 
         .browser-panel {
             min-width: 0;
-            padding: 22px;
+            min-height: 0;
+            padding: 14px;
             background:
                 linear-gradient(135deg, rgba(210, 197, 255, .78), rgba(246, 241, 252, .9));
         }
 
         .browser {
             height: 100%;
-            min-height: 690px;
+            min-height: 0;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -156,7 +159,7 @@
         }
 
         .browser-chrome {
-            flex: 0 0 46px;
+            flex: 0 0 40px;
             display: grid;
             grid-template-columns: 72px minmax(0, 1fr) 72px;
             align-items: center;
@@ -235,7 +238,7 @@
         }
 
         .trial-header {
-            flex: 0 0 74px;
+            flex: 0 0 60px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -283,7 +286,7 @@
             min-height: 0;
             flex: 1;
             overflow: auto;
-            padding: 36px clamp(22px, 5vw, 66px) 28px;
+            padding: 20px clamp(22px, 4vw, 52px) 16px;
             scrollbar-width: thin;
             scrollbar-color: #d5cde0 transparent;
         }
@@ -294,7 +297,7 @@
         }
 
         .eyebrow {
-            margin: 0 0 12px;
+            margin: 0 0 7px;
             color: var(--foo);
             font-size: 11px;
             font-weight: 700;
@@ -306,7 +309,7 @@
             max-width: 620px;
             margin: 0;
             font-family: "Manrope", sans-serif;
-            font-size: clamp(30px, 3.35vw, 47px);
+            font-size: clamp(28px, 3vw, 42px);
             font-weight: 600;
             line-height: 1.08;
             letter-spacing: -.045em;
@@ -314,16 +317,16 @@
 
         .step-lede {
             max-width: 590px;
-            margin: 17px 0 0;
+            margin: 10px 0 0;
             color: var(--muted);
-            font-size: 15px;
-            line-height: 1.65;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .study-card {
             position: relative;
-            min-height: 198px;
-            margin-top: 28px;
+            min-height: 148px;
+            margin-top: 16px;
             overflow: hidden;
             display: grid;
             grid-template-columns: minmax(0, 1fr) 168px;
@@ -335,12 +338,12 @@
         .study-copy {
             position: relative;
             z-index: 1;
-            padding: 26px 28px;
+            padding: 18px 22px;
         }
 
         .study-card .label {
             display: inline-flex;
-            padding: 6px 9px;
+            padding: 5px 8px;
             border-radius: 99px;
             background: rgba(255, 255, 255, .12);
             color: var(--lime);
@@ -352,9 +355,9 @@
 
         .study-card h3 {
             max-width: 390px;
-            margin: 16px 0 9px;
+            margin: 10px 0 6px;
             font-family: "Manrope", sans-serif;
-            font-size: 22px;
+            font-size: 19px;
             line-height: 1.2;
             letter-spacing: -.025em;
         }
@@ -368,7 +371,7 @@
 
         .study-art {
             position: relative;
-            min-height: 198px;
+            min-height: 148px;
             background:
                 radial-gradient(circle at 52% 48%, rgba(221, 242, 122, .96) 0 25%, transparent 26%),
                 radial-gradient(circle at 72% 64%, rgba(255, 140, 104, .9) 0 15%, transparent 16%),
@@ -384,28 +387,28 @@
         }
 
         .study-art::before {
-            width: 164px;
-            height: 164px;
-            top: 18px;
+            width: 132px;
+            height: 132px;
+            top: 8px;
             right: -30px;
         }
 
         .study-art::after {
-            width: 100px;
-            height: 100px;
-            top: 50px;
+            width: 82px;
+            height: 82px;
+            top: 32px;
             right: 12px;
         }
 
         .quick-facts {
-            margin-top: 22px;
+            margin-top: 12px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
         }
 
         .fact {
-            padding: 14px 16px;
+            padding: 9px 12px;
             border: 1px solid var(--line);
             border-radius: 12px;
             background: var(--white);
@@ -422,16 +425,16 @@
 
         .fact strong {
             display: block;
-            margin-top: 5px;
+            margin-top: 3px;
             font-size: 13px;
             font-weight: 600;
         }
 
         .form-grid {
-            margin-top: 26px;
+            margin-top: 16px;
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 17px;
+            gap: 11px 14px;
         }
 
         .field {
@@ -444,7 +447,7 @@
 
         .field label {
             display: block;
-            margin-bottom: 7px;
+            margin-bottom: 5px;
             color: #544c60;
             font-size: 12px;
             font-weight: 700;
@@ -453,7 +456,7 @@
         .field input,
         .field select {
             width: 100%;
-            height: 48px;
+            height: 43px;
             padding: 0 14px;
             border: 1px solid #ddd6e5;
             border-radius: 10px;
@@ -475,9 +478,9 @@
         }
 
         .choice-list {
-            margin-top: 24px;
+            margin-top: 16px;
             display: grid;
-            gap: 10px;
+            gap: 8px;
         }
 
         .choice {
@@ -485,7 +488,7 @@
             display: grid;
             grid-template-columns: 20px minmax(0, 1fr);
             gap: 12px;
-            padding: 16px 18px;
+            padding: 11px 14px;
             border: 1px solid var(--line);
             border-radius: 12px;
             background: var(--white);
@@ -524,8 +527,8 @@
         }
 
         .records-card {
-            margin-top: 26px;
-            padding: 24px;
+            margin-top: 16px;
+            padding: 18px;
             display: grid;
             grid-template-columns: 48px minmax(0, 1fr);
             gap: 17px;
@@ -564,11 +567,11 @@
 
         .records-copy fasten-stitch-element {
             display: block;
-            margin-top: 17px;
+            margin-top: 12px;
         }
 
         .trust-row {
-            margin-top: 16px;
+            margin-top: 11px;
             display: flex;
             flex-wrap: wrap;
             gap: 12px 18px;
@@ -590,7 +593,7 @@
         }
 
         .success-wrap {
-            min-height: 380px;
+            min-height: 100%;
             display: grid;
             place-items: center;
             text-align: center;
@@ -601,9 +604,9 @@
         }
 
         .success-mark {
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 22px;
+            width: 62px;
+            height: 62px;
+            margin: 0 auto 15px;
             display: grid;
             place-items: center;
             border-radius: 50%;
@@ -619,21 +622,21 @@
         .success-wrap h2 {
             margin: 0;
             font-family: "Manrope", sans-serif;
-            font-size: clamp(30px, 3.5vw, 46px);
+            font-size: clamp(28px, 3vw, 40px);
             line-height: 1.08;
             letter-spacing: -.045em;
         }
 
         .success-wrap p {
-            margin: 17px auto 0;
+            margin: 11px auto 0;
             color: var(--muted);
             font-size: 14px;
             line-height: 1.65;
         }
 
         .success-next {
-            margin: 24px auto 0;
-            padding: 15px 17px;
+            margin: 15px auto 0;
+            padding: 11px 14px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -664,7 +667,7 @@
         }
 
         .wizard-nav {
-            flex: 0 0 76px;
+            flex: 0 0 64px;
             display: grid;
             grid-template-columns: 132px 1fr 132px;
             align-items: center;
@@ -761,8 +764,9 @@
         .narrative-panel {
             position: relative;
             min-width: 0;
+            min-height: 0;
             overflow: hidden;
-            padding: clamp(48px, 6.4vw, 100px) clamp(40px, 5vw, 76px);
+            padding: clamp(28px, 4.2vh, 42px) clamp(32px, 4.2vw, 60px);
             display: flex;
             flex-direction: column;
             color: var(--white);
@@ -811,9 +815,9 @@
 
         .narrative-panel h1 {
             max-width: 470px;
-            margin: 36px 0 0;
+            margin: 18px 0 0;
             font-family: "Manrope", sans-serif;
-            font-size: clamp(36px, 4vw, 62px);
+            font-size: clamp(31px, 3.25vw, 48px);
             font-weight: 600;
             line-height: 1.03;
             letter-spacing: -.055em;
@@ -821,15 +825,15 @@
 
         .narrative-copy {
             max-width: 470px;
-            margin: 24px 0 0;
+            margin: 13px 0 0;
             color: rgba(255, 255, 255, .68);
-            font-size: 15px;
-            line-height: 1.7;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
         .what-happens {
-            margin-top: 44px;
-            padding-top: 26px;
+            margin-top: 22px;
+            padding-top: 16px;
             border-top: 1px solid rgba(255, 255, 255, .14);
         }
 
@@ -842,20 +846,20 @@
         }
 
         .what-list {
-            margin: 19px 0 0;
+            margin: 12px 0 0;
             padding: 0;
             display: grid;
-            gap: 14px;
+            gap: 9px;
             list-style: none;
         }
 
         .what-list li {
             display: grid;
             grid-template-columns: 21px minmax(0, 1fr);
-            gap: 12px;
+            gap: 9px;
             color: rgba(255, 255, 255, .84);
-            font-size: 12px;
-            line-height: 1.5;
+            font-size: 11px;
+            line-height: 1.4;
         }
 
         .what-list svg {
@@ -868,7 +872,7 @@
             position: relative;
             z-index: 1;
             margin-top: auto;
-            padding-top: 52px;
+            padding-top: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -889,7 +893,9 @@
             }
 
             .demo-shell {
+                height: auto;
                 grid-template-columns: 1fr;
+                margin-bottom: 32px;
             }
 
             .narrative-panel {
@@ -1291,7 +1297,7 @@
                         ]
                     },
                     {
-                        number: 1,
+                        number: 2,
                         title: "Keep the patient experience that already works for you.",
                         explanation: "Your patient journey might begin on a study page, in a member portal, through a referral partner, or with a coordinator. Fasten works downstream of that intake, so your team can add record retrieval without rebuilding the systems and workflows around it.",
                         points: [
@@ -1301,7 +1307,7 @@
                         ]
                     },
                     {
-                        number: 1,
+                        number: 3,
                         title: "Keep the patient experience that already works for you.",
                         explanation: "Your patient journey might begin on a study page, in a member portal, through a referral partner, or with a coordinator. Fasten works downstream of that intake, so your team can add record retrieval without rebuilding the systems and workflows around it.",
                         points: [
