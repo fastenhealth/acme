@@ -112,6 +112,9 @@
         }
 
         .control-sidebar {
+            --control-sidebar-panel-width: min(340px, calc(100vw - 80px));
+            --control-sidebar-toggle-inset: 36px;
+            --control-sidebar-toggle-gap: 8px;
             position: fixed;
             top: 0;
             right: 0;
@@ -122,6 +125,7 @@
             justify-content: flex-end;
             padding: 16px 0 16px 16px;
             gap: 0;
+            pointer-events: none;
         }
 
         .control-sidebar__toggle {
@@ -131,14 +135,16 @@
             border-radius: 9999px;
             padding: 16px 8px;
             margin-top: 16px;
-            margin-right: -1px;
+            margin-right: var(--control-sidebar-toggle-gap);
             box-shadow: 0 8px 18px rgba(15, 23, 42, 0.35);
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
             cursor: pointer;
-            transition: background 0.2s ease, box-shadow 0.2s ease;
+            pointer-events: auto;
+            transform: translateX(calc(var(--control-sidebar-panel-width) - var(--control-sidebar-toggle-inset) + var(--control-sidebar-toggle-gap)));
+            transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.35s ease;
         }
 
         .control-sidebar__toggle span {
@@ -150,12 +156,14 @@
         }
 
         .control-sidebar--open .control-sidebar__toggle {
-            background: rgba(99, 102, 241, 0.15);
+            background: rgba(99, 102, 241, 0.5);
             box-shadow: 0 12px 22px rgba(79, 70, 229, 0.35);
+            transform: translateX(0);
         }
 
         .control-sidebar__panel {
-            width: min(340px, calc(100vw - 80px));
+            box-sizing: border-box;
+            width: var(--control-sidebar-panel-width);
             height: calc(100vh - 32px);
             margin-right: 0;
             background: rgba(255, 255, 255, 0.97);
@@ -169,12 +177,14 @@
             flex-direction: column;
             gap: 16px;
             overflow-y: auto;
+            pointer-events: none;
             transform: translateX(100%);
             transition: transform 0.35s ease;
         }
 
         .control-sidebar--open .control-sidebar__panel {
             transform: translateX(0);
+            pointer-events: auto;
         }
 
         .sidebar-nav {
