@@ -964,6 +964,10 @@ video {
 .border-\[\#5B47FB\]\/40 {
   border-color: rgb(91 71 251 / 0.4);
 }
+.border-amber-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(253 230 138 / var(--tw-border-opacity, 1));
+}
 .border-blue-200 {
   --tw-border-opacity: 1;
   border-color: rgb(191 219 254 / var(--tw-border-opacity, 1));
@@ -1028,6 +1032,10 @@ video {
 .bg-\[\#DC3545\] {
   --tw-bg-opacity: 1;
   background-color: rgb(220 53 69 / var(--tw-bg-opacity, 1));
+}
+.bg-amber-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 251 235 / var(--tw-bg-opacity, 1));
 }
 .bg-blue-50 {
   --tw-bg-opacity: 1;
