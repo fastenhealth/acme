@@ -114,6 +114,7 @@
         .control-sidebar {
             --control-sidebar-panel-width: min(340px, calc(100vw - 80px));
             --control-sidebar-toggle-inset: 36px;
+            --control-sidebar-toggle-gap: 8px;
             position: fixed;
             top: 0;
             right: 0;
@@ -134,7 +135,7 @@
             border-radius: 9999px;
             padding: 16px 8px;
             margin-top: 16px;
-            margin-right: -1px;
+            margin-right: var(--control-sidebar-toggle-gap);
             box-shadow: 0 8px 18px rgba(15, 23, 42, 0.35);
             display: flex;
             flex-direction: column;
@@ -142,7 +143,7 @@
             gap: 6px;
             cursor: pointer;
             pointer-events: auto;
-            transform: translateX(calc(var(--control-sidebar-panel-width) - var(--control-sidebar-toggle-inset) - 1px));
+            transform: translateX(calc(var(--control-sidebar-panel-width) - var(--control-sidebar-toggle-inset) + var(--control-sidebar-toggle-gap)));
             transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.35s ease;
         }
 
@@ -155,7 +156,7 @@
         }
 
         .control-sidebar--open .control-sidebar__toggle {
-            background: rgba(99, 102, 241, 0.15);
+            background: rgba(99, 102, 241, 0.5);
             box-shadow: 0 12px 22px rgba(79, 70, 229, 0.35);
             transform: translateX(0);
         }
