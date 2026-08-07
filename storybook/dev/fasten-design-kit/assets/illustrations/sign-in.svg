@@ -1,0 +1,9 @@
+<svg viewBox="0 0 118 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="43" y="52" width="28" height="9" fill="var(--fdk-color-accent, #5B47FB)"/>
+<rect x="52.5" y="70.5" width="28" height="9" transform="rotate(-90 52.5 70.5)" fill="var(--fdk-color-accent, #5B47FB)"/>
+<path d="M72.4732 51.5288H62.0118V41.0706H52.6015V51.5288H42.1403V60.9504H52.6015V71.4068H62.0118V60.9504H72.4732V51.5288Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75.7233 19.1794L80.6872 24.1433L90.3562 14.4726" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M96.8724 18.4387C96.8724 26.4116 90.4048 32.876 82.4333 32.876C74.462 32.876 67.9944 26.4116 67.9944 18.4387C67.9944 10.4641 74.462 3.99984 82.4333 3.99984C90.4048 3.99984 96.8724 10.4641 96.8724 18.4387Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M83.6139 41.0383V91.5164C83.6139 96.2022 79.8142 100 75.1252 100H39.4887C34.7997 100 31 96.2022 31 91.5164V20.9631C31 16.2772 34.7997 12.4791 39.4887 12.4791H61.0743" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M41.6231 89.5369H72.9747" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

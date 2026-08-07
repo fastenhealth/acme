@@ -1,0 +1,27 @@
+<svg viewBox="0 0 232 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="197.18" y="39.6375" width="2.98086" height="12.6664" fill="var(--fdk-color-accent, #5B47FB)" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4"/>
+<rect x="204.466" y="45.0184" width="2.98086" height="12.6664" transform="rotate(90 204.466 45.0184)" fill="var(--fdk-color-accent, #5B47FB)" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4"/>
+<path d="M206.236 43.5708H200.651V37.9854H195.625V43.5708H190.04V48.6073H195.625V54.1926H200.651V48.6073H206.236V43.5708Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M218.763 19.2385V15.0953C218.763 14.3957 218.505 13.7285 218.031 13.212L210.369 4.89317C209.841 4.32282 209.099 3.99997 208.324 3.99997H179.741C178.202 3.99997 176.964 5.23756 176.964 6.77647V13.0828" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M224.327 67.9999H171.96C169.776 67.9999 168 66.2243 168 64.0395V21.4985C168 19.3139 169.776 17.5382 171.96 17.5382H181.85C183.325 17.5382 184.681 18.3668 185.359 19.6798L186.306 21.4985C186.984 22.8114 188.34 23.6293 189.825 23.6293H224.327C226.511 23.6293 228.287 25.405 228.287 27.6004V64.0395C228.287 66.2243 226.511 67.9999 224.327 67.9999Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M218.548 14.0082H211.122C210.251 14.0082 209.54 13.2978 209.54 12.4262V9.98325" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M211.241 36.9092C213.006 39.5242 214.039 42.6882 214.039 46.0889C214.039 55.161 206.688 62.5114 197.616 62.5114C194.883 62.5114 192.311 61.8441 190.04 60.6603" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M184.272 55.6453C182.335 52.9548 181.205 49.6511 181.205 46.0889C181.205 37.0168 188.555 29.6665 197.616 29.6665C200.414 29.6665 203.04 30.366 205.343 31.5928" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58.4701 37.7624H51.7467V31.0379H45.6883V37.7624H38.9649V43.8198H45.6883V50.5442H51.7467V43.8198H58.4701V37.7624Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4 68V26.8768L19.3242 20.6901" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54.8567 68V57.0694" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.3241 68V4H54.8566V24.9413" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54.8567 18.242L70.1819 26.8768V68" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.9092 40.5195H27.8929" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.9092 47.531H27.8929" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.9092 54.5435H27.8929" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35.9243 54.5435H38.9081" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.9092 61.5549H27.8929" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35.9243 61.5549H38.9081" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M46.9393 61.5549H49.9231" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="46.6667" y="31.3333" width="5.33333" height="19.3333" fill="var(--fdk-color-accent, #5B47FB)"/>
+<rect x="38.6667" y="43.3333" width="5.33333" height="19.3333" transform="rotate(-90 38.6667 43.3333)" fill="var(--fdk-color-accent, #5B47FB)"/>
+<circle cx="120" cy="44" r="7" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2"/>
+<circle cx="144" cy="44" r="7" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="2"/>
+<circle cx="95" cy="44" r="9" fill="var(--fdk-color-accent, #5B47FB)"/>
+</svg>

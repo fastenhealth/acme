@@ -1,0 +1,6 @@
+<svg viewBox="0 0 118 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="59" cy="52" r="46.3" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4"/>
+<path d="M74.418 35.2304L51.8778 57.7706L44.376 50.2619C42.3662 48.2521 39.1061 48.2521 37.0963 50.2619C35.0865 52.2706 35.0865 55.5295 37.0963 57.5393L48.2437 68.6867C50.2536 70.6966 53.5137 70.6966 55.5234 68.6867L59.1575 65.0481L81.6978 42.5077C83.7076 40.498 83.7076 37.239 81.6978 35.2304C79.688 33.2206 76.4279 33.2206 74.418 35.2304Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35.4276 55.4028L37.242 50.8666L41.0396 47.5884L56.7813 64.6783L54.933 69.9184L49.036 69.9184L35.4276 55.4028Z" fill="var(--fdk-color-accent, #5B47FB)"/>
+<rect x="76.8206" y="31.9999" width="10.4125" height="40.1362" transform="rotate(46.2842 76.8206 31.9999)" fill="var(--fdk-color-accent, #5B47FB)"/>
+</svg>

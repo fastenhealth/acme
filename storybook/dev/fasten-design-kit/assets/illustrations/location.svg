@@ -1,0 +1,16 @@
+<svg viewBox="0 0 118 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M92.7051 54.6437H82.6201V44.5569H73.5324V54.6437H63.4474V63.7297H73.5324V73.8163H82.6201V63.7297H92.7051V54.6437Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11 100V38.3151L33.9862 29.0351" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M87.285 100V83.604" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33.9861 100V4H87.2849V35.4119" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M87.285 25.363L110.273 38.3151V100" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42.3638 58.7793H46.8394" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42.3638 69.2965H46.8394" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42.3638 79.8152H46.8394" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58.8865 79.8152H63.3621" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42.3638 90.3324H46.8394" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58.8865 90.3324H63.3621" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M75.4089 90.3324H79.8846" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="75" y="45" width="8" height="29" fill="var(--fdk-color-accent, #5B47FB)"/>
+<rect x="63" y="63" width="8" height="29" transform="rotate(-90 63 63)" fill="var(--fdk-color-accent, #5B47FB)"/>
+</svg>

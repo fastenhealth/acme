@@ -1,0 +1,7 @@
+<svg viewBox="0 0 118 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4012 13.1131L28.8593 35.1115L6.87241 70.8049C-0.983449 83.5663 8.20143 100 23.19 100H94.2137C109.202 100 118.387 83.5663 110.531 70.8049L75.0193 13.1131C67.5334 0.962303 49.87 0.962303 42.4012 13.1131Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M62.702 28.1079L64.5262 32.0942L63.705 51.811L62.1493 65.814L58.6718 66.9731L55.2509 65.8325L53.1415 31.9292L54.1591 28.146L60.1317 26.8179L62.702 28.1079Z" fill="var(--fdk-color-accent, #5B47FB)" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4"/>
+<path d="M64.1185 60.0167L63.8662 64.2257C63.698 66.9491 61.427 69.0756 58.7016 69.0756C55.9765 69.0756 53.7222 66.9491 53.554 64.2257L51.6027 32.3171C51.3504 28.2243 54.6139 24.7691 58.7016 24.7691C62.8063 24.7691 66.0531 28.2243 65.8007 32.3171L64.1185 59.5" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="58.2857" cy="82.2857" r="3.44286" fill="var(--fdk-color-accent, #5B47FB)" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4"/>
+<path d="M64.0344 82.352C64.0344 85.2924 61.6454 87.6761 58.7015 87.6761C55.7576 87.6761 53.3857 85.2924 53.3857 82.352C53.3857 79.4114 55.7576 77.0293 58.7015 77.0293C61.6454 77.0293 64.0344 79.4114 64.0344 82.352Z" stroke="var(--fdk-color-accent, #5B47FB)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
