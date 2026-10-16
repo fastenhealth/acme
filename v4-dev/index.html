@@ -165,6 +165,7 @@
             box-sizing: border-box;
             width: var(--control-sidebar-panel-width);
             height: calc(100vh - 32px);
+            max-height: calc(100dvh - 2rem);
             margin-right: 0;
             background: rgba(255, 255, 255, 0.97);
             backdrop-filter: blur(12px);
@@ -175,6 +176,7 @@
             padding: 20px 18px 16px;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
             gap: 16px;
             overflow-y: auto;
             pointer-events: none;
@@ -195,6 +197,11 @@
 
         .sidebar-nav hr {
             border-color: rgba(15, 23, 42, 0.08);
+        }
+
+        .control-sidebar__panel > *,
+        .sidebar-nav > * {
+            flex-shrink: 0;
         }
 
         .event-terminal {
@@ -299,6 +306,20 @@
     </button>
 
     <div class="control-sidebar__panel">
+        <fieldset aria-describedby="branding-help" class="min-w-0 space-y-2">
+            <legend class="px-3 text-sm font-semibold text-gray-700">Branding</legend>
+            <p id="branding-help" class="px-3 text-xs text-gray-500">Choose a preset, then open the widget.</p>
+            <template x-for="(preset, key) in brandingPresets" :key="key">
+                <label
+                        :class="{ 'bg-indigo-50 text-indigo-600': brandingPreset === key, 'text-gray-700 hover:bg-gray-100': brandingPreset !== key }"
+                        class="flex min-h-[40px] cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition focus-within:ring-2 focus-within:ring-indigo-500"
+                >
+                    <input type="radio" name="branding-preset" :value="key" x-model="brandingPreset" class="accent-indigo-600">
+                    <span x-text="preset.label"></span>
+                </label>
+            </template>
+        </fieldset>
+
         <nav class="sidebar-nav">
             <button
                     @click="toggleSearchOnly"
@@ -513,6 +534,10 @@
             :search-sort-by-opts="sortByOpts"
             :event-types="eventTypes"
             :email="email"
+            :co-branding-theme="branding.theme"
+            :co-branding-accent-color="branding.accentColor"
+            :co-branding-logo-url="branding.logoUrl"
+            :co-branding-company-name="branding.companyName"
 
     ></fasten-stitch-element>
 
@@ -657,6 +682,41 @@
                 eventTypes: "",
                 email: null,
                 controlSidebarOpen: false,
+                brandingPreset: 'default-light',
+                brandingPresets: {
+                    'default-light': {
+                        label: 'Default light',
+                        theme: 'light',
+                        accentColor: '',
+                        logoUrl: '',
+                        companyName: '',
+                    },
+                    'default-dark': {
+                        label: 'Default dark',
+                        theme: 'dark',
+                        accentColor: '',
+                        logoUrl: '',
+                        companyName: '',
+                    },
+                    'custom-light': {
+                        label: 'Custom light',
+                        theme: 'light',
+                        accentColor: '#E5243B',
+                        logoUrl: 'assets/logos/logored.svg',
+                        companyName: 'Your Brand',
+                    },
+                    'custom-dark': {
+                        label: 'Custom dark',
+                        theme: 'dark',
+                        accentColor: '#22D3C5',
+                        logoUrl: 'assets/logos/logoteal.svg',
+                        companyName: 'Your Brand',
+                    },
+                },
+
+                get branding() {
+                    return this.brandingPresets[this.brandingPreset];
+                },
 
                 toggleStaticBackdrop() {
                     this.staticBackdrop = !this.staticBackdrop;
