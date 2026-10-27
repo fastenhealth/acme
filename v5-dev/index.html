@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Redirecting to v5 development</title>
+    <script>
+        const url = new URL('../v5/index.html', window.location.href);
+        url.search = window.location.search;
+        url.searchParams.set('env', 'dev');
+        url.hash = window.location.hash;
+        window.location.replace(url.href);
+    </script>
+</head>
+<body>
+    <p><a href="../v5/index.html?env=dev">Continue to v5 development</a></p>
+</body>
+</html>
