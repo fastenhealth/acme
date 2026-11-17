@@ -1213,6 +1213,9 @@ video {
   -webkit-user-select: all;
           user-select: all;
 }
+.resize {
+  resize: both;
+}
 .grid-cols-\[auto\2c minmax\(0\2c 1fr\)\] {
   grid-template-columns: auto minmax(0,1fr);
 }
